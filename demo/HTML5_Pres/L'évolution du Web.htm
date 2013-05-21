@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>L'évolution du Web</title>
+    <meta name="description" content="Graphique interactif concernant l'évolution du Web et des navigateurs. Ce graphique présente les principaux navigateurs Web qui sont apparus depuis 1993, tels que Mosaic, Netscape, Opera, Internet Explorer, Safari, Firefox et Google Chrome, ainsi que les technologies Web qui ont joué un rôle majeur dans leur développement, telles que HTML, CSS et JavaScript.">
+    <meta name="keywords" content="évolution du web, google, html5, chrome, navigateurs, css3">
+    <meta name="author" content="Google, Hyperakt, Vizzuality">
+    <meta name="DC.title" content="Graphique : Évolution du Web et des navigateurs">
+    
+    <meta property="og:title" content="The evolution of the web"/>
+    <meta property="og:type" content="Visualization"/>
+    <meta property="og:url" content="http://www.evolutionofweb.com" />
+    <meta property="og:image" content="img/Evolution_of_the_web.jpg"/>
+
+    <link rel="shortcut icon" href="img/5.ico">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/style.css" />
+    
+    <noscript><meta http-equiv="refresh" content="0;url=/javascript"></noscript>
+    
+    <script type="text/javascript" src="js/libs/modernizr.js"></script>
+  </head>
+  <body>
+    <!-- HOME -->
+    <article class="home">
+      <section>
+        <div class="lang-selector">
+          
+          <a>Français</a>
+          <ul>
+            <li><a href="?hl=en">English (US)</a></li> 
+            <li><a href="?hl=en-gb">English (UK)</a></li> 
+            <li><a href="?hl=es">Español</a></li> 
+            <li><a href="?hl=ru">Русский</a></li> 
+            <li><a href="?hl=zh-cn">中文 (简体)</a></li> 
+            <li><a href="?hl=zh-tw">繁體中文 (台灣)</a></li> 
+            
+            <li><a href="?hl=de">Deutsch</a></li> 
+            <li><a href="?hl=pt-br">Português (Brasil)</a></li> 
+            <li><a href="?hl=it">Italiano</a></li> 
+            <li><a href="?hl=nl">Nederlands</a></li> 
+            <li><a href="?hl=ja">日本語</a></li> 
+            <li><a href="?hl=th">ไทย</a></li> 
+            <li><a href="?hl=id">Bahasa Indonesia</a></li> 
+            <li><a href="?hl=tr">Türkçe</a></li> 
+          </ul>
+
+        </div>
+        
+        <h1>L'évolution du Web</h1>
+        <p>Aujourd'hui, le Web est un univers en perpétuelle expansion, constitué de pages et d'applications Web qui regorgent de vidéos, de photos et de contenu interactif. Tout cela est rendu possible grâce à l'interaction entre les technologies Web et les navigateurs.</p>
+        <p>Petit à petit, les technologies Web ont permis aux développeurs de rendre le Web plus utile et plus captivant. Le Web d'aujourd'hui est le fruit des efforts constants fournis par la communauté Open Web, qui participe à la définition des technologies Web, telles que HTML5, CSS3 et WebGL, et fait en sorte qu'elles soient prises en charge par tous les navigateurs.</p>
+        <p>Les bandes de couleur de cette visualisation représentent les interactions entre les technologies Web et les navigateurs, qui sont à l'origine des puissantes applications Web que nous utilisons au quotidien.</p>
+        <a href="#explore" id="explore"><span class="explore">Explorer</span></a>
+        
+      </section>
+    </article>
+
+    
+
+    <!-- VISUALIZATION -->
+    <article class="visualization">
+      <header>
+        <h1><a href="/?hl=fr">L'évolution du Web</a></h1>
+        <nav>
+          <a href="/#/evolution" class="techs selected" >Navigateurs et technologies</a>
+          <a href="/#/growth" class="growth disabled">L'essor d'Internet</a>
+        </nav>
+        <span class="night"></span>
+        <input type="checkbox" />
+        <span class="day"></span>
+        <g:plusone annotation="none" style="float:right"></g:plusone>
+      </header>
+
+      <section class="viewport">
+        <div class="container">
+          <div class="wrapper">
+            <div class="grid"></div>
+            <div class="paths"></div>
+            <div class="path_gradient"></div>
+            <div class="browsers"></div>
+            <div class="graphs"></div>
+          </div>
+        </div>
+
+        <section class="legend">
+          <div>
+            <a href="#users" class="users disabled">
+              <span class="line"></span>
+              <span class="rectangle"></span>
+              Nombre d'internautes dans le monde
+            </a>
+          </div>
+          <div class="margin">
+            <a href="#traffic" class="traffic">
+              <span class="line"></span>
+              <span class="circle"></span>
+              Trafic Internet dans le monde <small>(en pétaoctets par mois)</small>
+            </a>
+          </div>
+        </section>
+
+        <footer>
+          <a class="credits" href="#credits">Remerciements</a>
+          <div class="graph_bar"></div>
+          <div class="credits">
+            <a class="close" href="#close">x</a>
+            <h4>Remerciements</h4>
+            <p class="margin">Créé par les membres de l'équipe Google Chrome</p>
+            <p>Versions 2011 et 2012 par <a href="http://hyperakt.com" target="_blank">Hyperakt</a> et <a href="http://vizzuality.com" target="_blank">Vizzuality</a> </p>
+            <p>Version 2010 par <a href="http://www.mgmtdesign.com/" target="_blank">mgmt design</a> et <a href="http://good.is" target="_blank">GOOD</a> </p>
+
+            <h4 class="margin">Sources</h4>
+            <p class="margin">Wikipedia, CanIUse.com, W3C, HTML5rocks.com et Mozilla Developer Network</p>
+            <p>Les captures d'écran des navigateurs utilisées dans ce graphique proviennent de la communauté Web.</p>
+          </div>
+        </footer>
+        <div class="graph_bar_tooltip"></div>
+      </section>
+
+      <section class="controls">
+        <a class="left-arrow"><span class="arrow left"></span></a>
+        <a class="right-arrow"><span class="arrow right"></span></a>
+        <div class="zoom-controls">
+          <a href="#zoom_in" class="zoom_in">+</a>
+          <a href="#zoom_out" class="zoom_out">-</a>
+        </div>
+      </section>
+    </article>
+
+    <!-- MAMUFAS -->
+    <article class="browsers">
+      <section class="window">
+        <a href="#close" class="close_hidden left">left</a>
+        <a href="#close" class="close_hidden right">right</a>
+        <div class="carousel" id="galleria">
+          <img src="img/Evolution_of_the_web.jpg" alt="Evolution of Web" title="Evolution of Web">
+        </div>
+        <div class="info">
+          <a class="close_galleria" href="#close_galleria">close_galleria</a>
+          <span class="browser_image"></span>
+          <h2></h2>
+          <p></p>
+          <ul class="dots-list"></ul>
+          <a class="next" href="#next_version">galleria suivante</a>
+          <a class="previous" href="#previous_version">galleria précédente</a>
+        </div>
+      </section>
+    </article>
+
+    
+
+
+
+<!-- Language -->
+<script defer type="text/javascript">
+  var current_language="fr";
+</script>
+
+ 
+  <script type="text/javascript" src="js/i18n/fr.js"></script>
+
+
+<script>
+/**
+ this function replaces the behaviour of default gettext
+ to fix some strings with double \\ in line jumps
+*/
+
+old_gettext = window.gettext;
+window.gettext = function(s) {
+    var f;
+    if(s.indexOf('\n') !== -1) {
+        var t = old_gettext(s);
+        if(t == s) {
+            t = old_gettext(s.replace(/\n/g, '\\n'));
+            if( t != s) {
+              return t.replace(/\\n/g, '\n')
+            }
+        }
+        f = t;
+    } else {
+      f = old_gettext(s);
+    }
+    return f.replace(/⏎/g, '');
+}
+
+</script>
+
+ 
+  <script defer type="text/javascript" src="js/all.js"></script>
+
+
+<script type="text/javascript">
+ var _gaq = _gaq || [];
+ _gaq.push(['_setAccount', 'UA-32991408-1']);
+ _gaq.push(['_trackPageview']);
+
+ (function() {
+   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+ })();
+</script>
+
+    
+  </body>
+</html>

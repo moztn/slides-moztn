@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="fr">
+
+	<head>
+		<meta content="text/html" charset="iso-8859-1">
+
+		<title>HTML5</title>
+
+		<meta name="description" content="Presentation">
+		<meta name="author" content="Med Mack">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+			<!----------------------------------first-------------------------------------------->
+				<section>
+				<section>
+					<img src="images/intro.png">
+					<h3>HTML5 Essential Training</h3>
+					<p>
+						<small>Created by <a href=" https://reps.mozilla.org /u/MedMack/">Med Mannai ( Mack ) </a> / <a href="http://twitter.com/medmannai">@Medmannai</a></small>
+					</p>
+				</section>
+
+					<section><ul>
+					<li><code>étudiant</code></li>
+					<li><code>Web Designer & Developper</code></li>
+					<li><code>Lead Designer @ Mozilla Tunisia</code></li>
+					<li><code>Mozilla Reps</code></li>
+					<li><code>FirefoxOS Contributor</code></li>
+				</section>
+					</section>
+					
+				</section>
+				<!----------------------------------Plan-------------------------------------------->
+				<section>
+					<h1>Plan</h1>
+					<ol>
+							<li class="fragment"><code>Historique</code></li>
+							<li class="fragment"><code>Why HTML5 ?</code></li>
+							<li class="fragment"><code>What's new ?</code></li>
+							<li class="fragment"><code>What can we do with HTML5 ?</code></li>
+					</ol>
+				</section>
+				<!--------------------------------------Historique---------------------------------------->
+				<section>
+					<section>
+						<h2>Historique</h2><br>
+						<ul>
+							<li class="fragment"><code>1989 : HTML ( images & forms )</code></li>
+							<li class="fragment"><code>1995 : HTML 2.0</code></li>
+							<li class="fragment"><code>1997 : HTML 3.2 ( tables )</code></li>
+							<li class="fragment"><code>1997 : HTML 4.0 ( scriptes, styles & frameset )</code></li>
+							<li class="fragment"><code>2004 : WHATWG starts working on a project</code></li>
+							<li class="fragment"><code>2007 : W3C + WHATWG = HTML5</code></li>
+							<li class="fragment"><code>2020 : Last tests</code></li>
+							<li class="fragment"><code>2022 : Reaching full recommendation status</code></li>
+					</ul>
+					</section>
+					<section>
+						<iframe src="http://evolutionofweb.appspot.com/?hl=fr" width="900" height="700"></iframe> 
+					</section>
+					
+				</section>
+				<!--------------------------------Why HTML5 ?---------------------------------------------->
+				<section>
+					<section>
+						<h2>Why HTML5 ?</h2>
+						<ul>
+							<li class="fragment"><code>Les usages sont changés</code></li>
+							<li class="fragment"><code>Les applications Web</code></li>
+							<li class="fragment"><code>Structure des documents</code></li>
+							<li class="fragment"><code>Se préparer pour l'avenir..</code></li>
+
+					</ul>
+					</section>
+				</section>
+			<!------------------------------------what's new ?------------------------------------------>
+			<section>
+				<section>
+					<h2>What's New ?</h2>
+					<ul>
+							<li class="fragment"><code>New attributs</code></li>
+							<li class="fragment"><code>New elements</code></li>
+							<li class="fragment"><code>Full support of CSS3 et JavaScript</code></li>
+							<li class="fragment"><code>More markup to replace scripting</code></li>
+							<li class="fragment"><code>Audio & video</code></li>
+							<li class="fragment"><code>2D & 3D graphiques</code></li>
+							<li class="fragment"><code>Local Storage</code></li>
+							<li class="fragment"><code>Local Database</code></li>
+							<li class="fragment"><code>Web Apps</code></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>< !doctype HTML ></h2>
+					</section>
+				<section>
+					<h2>New elements</h2>
+					<img src="images/struct.png">
+				</section>
+
+				<section>
+					<h2>Form < input ></h2>
+				</section>
+
+				<section>
+					<h2> < input type="color" ></h2>
+				</section>
+
+				<section>
+					<h2> < input type="date" ></h2>
+				</section>
+
+				<section>
+					<h2> < input type="email" ></h2>
+				</section>
+
+				<section>
+					<h2> < input type="range" ></h2>
+				</section>
+				<section>
+					<h2> < input type="url" ></h2>
+				</section>
+
+				<section>
+					<h2> < datalist ></h2>
+					<pre><code>< input list="browsers">
+
+					< datalist id="browsers">
+					  < option value="Internet Explorer">
+					  < option value="Firefox">
+					  < option value="Chrome">
+					  < option value="Opera">
+					  < option value="Safari">
+				< /datalist></code></pre>
+					<laber for="browsers">Browsers :</label>
+					<input list="browsers">
+
+					<datalist id="browsers">
+					  <option value="Internet Explorer">
+					  <option value="Firefox">
+					  <option value="Chrome">
+					  <option value="Opera">
+					  <option value="Safari">
+					</datalist> 
+				</section>
+
+				<section>
+					<h2> < keygen ></h2>
+					<pre><code>Username: < input type="text" name="usr_name">
+Encryption: < keygen name="security"></code></pre>
+					Username: <input type="text" name="usr_name">
+Encryption: <keygen name="security">
+
+				</section>
+
+				<section>
+					<h2> < output ></h2>
+					<pre><code>< form oninput="x.value=parseInt(a.value)+parseInt(b.value)">
+					< input type="text" id="a" > +
+					< input type="text" id="b" > =
+					< output name="x" for="a b">< /output>
+					< /form></code></pre>
+
+					<form oninput="x.value=parseInt(a.value)+parseInt(b.value)">
+					<input type="text" id="a" value="0"> +
+					<input type="text" id="b" value="0"> =
+					<output name="x" for="a b"></output>
+					</form>
+					
+
+				</section>
+
+				<section>
+					<h2>  autocomplete </h2>
+					<pre><code>< input type="text" name="text" autocomplete="on"></code></pre>
+
+					Text : <input type="text" name="text" autocomplete="on">
+				</section>
+
+				<section>
+					<h2>  autofocus </h2>
+					<pre><code>< input type="text" name="text1" autofocus >
+					< input type="text" name="text2"></code></pre>
+					<form>
+					Zone1 : <input type="text" name="text1" autofocus ><br>
+					Zone2 : <input type="text" name="text2" >
+				</form>
+				</section>
+
+				<section>
+					<h2>  required </h2>
+					<pre><code>< input type="text" name="text1" required >
+					< input type="text" name="text2"></code></pre>
+					<form>
+					Zone1 : <input type="text" name="text1" required ><br>
+					Zone2 : <input type="text" name="text2" >
+				</form>
+				</section>
+
+				<section>
+					<h2>  placeholder </h2>
+					<pre><code>< input type="text" name="text1" autofocus >
+					< input type="text" name="text2"></code></pre>
+					<form>
+					Login : <input type="text" name="text1" placeholder="you@mozilla.org" ><br>
+					Mot de passe : <input type="text" name="text2" placeholder="secret :P" >
+				</form>
+				</section>
+
+				<section>
+					<h2>  form </h2>
+					<pre><code>< form action="demo_form.asp" id="form1">
+					  First name: < input type="text" name="fname">
+					  < input type="submit" value="Submit">
+					< /form>
+					Last name: < input type="text" name="lname" form="form1"></code></pre>
+
+						<form action="" id="form1">
+						  First name: <input type="text" name="fname"><br>
+						  <input type="submit" value="Submit">
+						</form>
+
+						Last name: <input type="text" name="lname" form="form1">
+				</section>
+
+				<section>
+					<h2>  formenctype </h2>
+					<pre><code>< form action="demo_post_enctype.asp" method="post">
+						  First name: < input type="text" name="fname"><br>
+						  < input type="submit" value="Submit">
+						  < input type="submit" formenctype="multipart/form-data"
+						  value="Submit as Multipart/form-data">
+						</ form> </code></pre>
+
+				</section>
+
+				<section>
+					<h2>  Min & Max </h2>
+					<pre><code>< input type="number" name="quantity" min="1" max="5"></code></pre>
+
+				</section>
+
+				<section>
+					<h2>  Pattern </h2>
+					<pre><code>< input type="text" name="country_code" pattern="[A-Za-z]{3}" title="Three letter country code"></code></pre>
+					Code : <input type="text" name="country_code" pattern="[A-Za-z]{3}" title="Three letter country code">
+
+				</section>
+
+				<section>
+					<h2>  height & width </h2>
+					<pre><code>< img src="img/logo.png" width="400" height="230"></code></pre>
+
+				</section>
+
+				<section>
+					<h2>  Drag & Drop </h2>
+					
+
+				</section>
+
+				<section>
+
+					<script>
+function allowDrop(ev)
+{
+ev.preventDefault();
+}
+
+function drag(ev)
+{
+ev.dataTransfer.setData("Text",ev.target.id);
+}
+
+function drop(ev)
+{
+ev.preventDefault();
+var data=ev.dataTransfer.getData("Text");
+ev.target.appendChild(document.getElementById(data));
+}
+</script>
+<style type="text/css">
+#div1 {width:129px;height:129px;padding:1px;border:1px solid #aaaaaa;}
+</style>
+
+
+<div id="div1" ondrop="drop(event)"
+ondragover="allowDrop(event)"></div><br>
+<div id="div1" ondrop="drop(event)"
+ondragover="allowDrop(event)"></div>
+
+
+<img id="drag1" src="images/html5.png" draggable="true"
+ondragstart="drag(event)" width="256" height="256">
+
+
+
+				</section>
+
+				<section>
+					<pre><code>//js
+function allowDrop(ev)
+{
+ev.preventDefault();
+}
+
+function drag(ev)
+{
+ev.dataTransfer.setData("Text",ev.target.id);
+}
+
+function drop(ev)
+{
+ev.preventDefault();
+var data=ev.dataTransfer.getData("Text");
+ev.target.appendChild(document.getElementById(data));
+}
+</script></code></pre>
+
+				</section>
+
+				<section>
+					<pre><code>//zone destination 
+						< div id="target" ondrop="drop(event)" ondragover="allowDrop(event)">< /div>
+
+						//objet à déplacer
+< img id="drag" src="images/html5.png" draggable="true" ondragstart="drag(event)"></code></pre>
+
+				</section>
+
+				<section>
+					<h2>Audio & Video</h2>
+				</section>
+
+				<section><audio controls>
+  <source src="audio/20.wav" type="audio/wav">
+Your browser does not support the audio element.
+</audio> </section>
+
+<section><video  controls>
+  <source src="video/getInvolved.mp4" type="video/mp4">
+  <source src="video/getInvolved.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>  </section>
+				
+				
+			</section>
+			<!------------------------------------more technique------------------------------------------>
+			<section name="4">
+				<section>
+					<h2>Web Storage</h2>
+				</section>
+				<section>
+					<script>
+function clickCounter()
+{
+if(typeof(Storage)!=="undefined")
+  {
+  if (localStorage.clickcount)
+    {
+    localStorage.clickcount=Number(localStorage.clickcount)+1;
+    }
+  else
+    {
+    localStorage.clickcount=1;
+    }
+  document.getElementById("result").innerHTML="You have clicked the button " + localStorage.clickcount + " time(s).";
+  }
+else
+  {
+  document.getElementById("result").innerHTML="Sorry, your browser does not support web storage...";
+}
+}
+</script>
+<p><button onclick="clickCounter()" type="button">Click me!</button></p>
+<div id="result"></div>
+<p>Click the button to see the counter increase.</p>
+</section>
+
+<section>
+					<pre><code>
+function clickCounter()
+{
+if(typeof(Storage)!=="undefined")
+  {
+  if (localStorage.clickcount)
+    {
+    localStorage.clickcount=Number(localStorage.clickcount)+1;
+    }
+  else
+    {
+    localStorage.clickcount=1;
+    }
+  document.getElementById("result").innerHTML="clicks= " + localStorage.clickcount + " time(s).";
+  }
+else
+  {
+  document.getElementById("result").innerHTML="Not supported";
+}
+}
+</code></pre>
+</section>
+				<section>
+					<h2>App Cache</h2><br>
+
+    Offline browsing <br>
+    Speed <br>
+    Reduced server load
+
+				</section>
+
+				<section>
+					<h2>Geolocation</h2><br>
+					<p id="demo">Click the button to get your coordinates:</p>
+<button onclick="getLocation()">Try It</button>
+<script>
+var x=document.getElementById("demo");
+function getLocation()
+  {
+  if (navigator.geolocation)
+    {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  else{x.innerHTML="Geolocation is not supported by this browser.";}
+  }
+function showPosition(position)
+  {
+  x.innerHTML="Latitude: " + position.coords.latitude + 
+  "<br>Longitude: " + position.coords.longitude;	
+  }
+</script>
+				</section>
+
+				<section>
+					<pre><code>
+var x=document.getElementById("demo");
+function getLocation()
+  {
+  if (navigator.geolocation)
+    {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  else{x.innerHTML="Geolocation is not supported by this browser.";}
+  }
+function showPosition(position)
+  {
+  x.innerHTML="Latitude: " + position.coords.latitude + 
+  "<br>Longitude: " + position.coords.longitude;	
+  }
+</code></pre>
+</section>
+
+								<section>
+									<h2>Canvas</h2><br>
+								</section>
+
+								<section>
+									 <canvas id="myCanvas" width="400" height="100" style="border:1px solid #c3c3c3;">
+										Your browser does not support the HTML5 canvas tag.
+										</canvas>
+
+										<script>
+
+										var c=document.getElementById("myCanvas");
+										var ctx=c.getContext("2d");
+										ctx.fillStyle="#FF0000";
+										ctx.fillRect(0,0,190,75);
+
+										</script>
+															<pre><code>//JS
+																var c=document.getElementById("myCanvas");
+										var ctx=c.getContext("2d");
+										ctx.fillStyle="#FF0000";
+										ctx.fillRect(0,0,190,75);
+										//HTML5
+										< canvas id="myCanvas" width="400" height="100" style="border:1px solid #c3c3c3;">
+										Your browser does not support the HTML5 canvas tag.< /canvas>
+										</code></pre>
+									</section>
+
+
+
+					<section>
+					<canvas id="myCanvas2" width="200" height="100" style="border:1px solid #c3c3c3;">
+						Your browser does not support the HTML5 canvas tag.
+						</canvas>
+
+						<script>
+
+						var c=document.getElementById("myCanvas2");
+var ctx=c.getContext("2d");
+
+// Create gradient
+var grd=ctx.createRadialGradient(75,50,5,90,60,100);
+grd.addColorStop(0,"red");
+grd.addColorStop(1,"white");
+
+// Fill with gradient
+ctx.fillStyle=grd;
+ctx.fillRect(10,10,150,80);
+
+						</script>
+											<pre><code>//JS
+												var c=document.getElementById("myCanvas2");
+								var ctx=c.getContext("2d");
+
+								// Create gradient
+								var grd=ctx.createRadialGradient(75,50,5,90,60,100);
+								grd.addColorStop(0,"red");
+								grd.addColorStop(1,"white");
+
+								// Fill with gradient
+								ctx.fillStyle=grd;
+								ctx.fillRect(10,10,150,80);
+						//HTML5
+						< canvas id="myCanvas2" width="200" height="100" style="border:1px solid #c3c3c3;">
+						Your browser does not support the HTML5 canvas tag.< /canvas>
+						</code></pre>
+						</section>
+
+						<section><h2>WebGL</h2></section>
+
+
+				
+			</section>
+			<!--------------------------------------With HTML5---------------------------------------->
+			<section>
+				<section>
+					<h2>What can we do<br>with HTML5 ?</h2>
+				</section>
+				
+			</section>
+
+			<section>
+					<h1>Merci</h1>
+					
+				</section>
+			
+				<section>
+					<h2 style="padding-top:30px;">Comment nous rejoindre ?</h2>
+					<img src="images/contactmoz.PNG" style="width:100%;height:100%">
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
