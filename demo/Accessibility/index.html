@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>webmakerProject</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/moon.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal center">
+			<div class="logowebmaker"></div>
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h1>An Accessible Web</h1>
+					<h3>Programmme Spéciale</h3>
+					<p>
+						<small>Créer par  <a href="https://reps.mozilla.org /u/manel_rhaiem92/">Manel Rhaiem</a> / <a href="https://twitter.com/manelbutterfly">@manelbutterfly</a></small>
+					</p>
+				</section>
+
+				<section>
+					<h2>À propos de</h2>
+					<ul>
+						<li>lancer par Manel Rhaiem</li>
+						<li>enseigner les technologies Web pour les jeunes personnes handicapées</li>
+						<li>Utiliser le produit Webmaker pour initier dans les base de web </li>
+					</ul>
+
+					<aside class="notes">
+						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+					</aside>
+				</section>
+
+				<!-- Example of nested vertical slides -->
+				<section>
+					<section>
+						<h2>Webmaker</h2>
+						<a href="#" class="image navigate-down">
+							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+						</a>
+					</section>
+					<section>
+						<h2>À propos</h2>
+						<ul>
+							<li>projet lancer par mozilla</li>
+							<li>Faire quelque chose d'étonnant avec le web</li>
+							<li>Créer une génération de Webmakers</li>
+							<li>Facilite L'avenir du Web ensemble</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Outils</h2>
+						
+						
+							<img  src="images/images.png" alt="Unicorn">
+						
+					</section>
+					<section>
+						<h2>Thimble</h2>
+						<p>Réaliser et partager vos propre page web</p>
+						<a href="#/2" class="image">
+							<img width="178" height="238" src="images/thimble.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
+						</a>
+					</section>
+					<section>
+						<h2>Caractéristique</h2>
+						<ul>
+							<li>Simple Pour créer vos propres pages Web</li>
+							<li>Vous permet d'écrire en HTML et CSS codes</li>
+							<li>Vous pouvez prévisualiser votre travail, l'héberger et partager instantanément</li>
+							<li>Vous aide à vérifier vos erreurs</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h2>D'autre Outils</h2>
+					<img src="images/popcorn.png">
+					<img src="images/Ray.jpeg">
+				</section>
+
+				<section>
+					<h2>But du projet</h2>
+					<ul>
+						<li class="fragment">promouvoir l'effort et l'implication des femmes/filles tunisiennes dans le domaine du libre</li>
+						<li class="fragment">partager les connaissances</li>
+					    <li class="fragment">action sociale dans le but d'apprendre le sens de compétitivité aux enfants </li>
+					    <li class="fragment">leur procurer le plaisir d'apprendre de nouvelles technologies.</li>
+					    </ul>
+				</section>
+
+				<section>
+					<section>
+					<h2>Réalisation</h2>
+				</section>
+					<section>
+						<img src="images/real.png">
+					</section>
+					<section>
+						<img src="images/real1.png">
+					</section>
+					<section>
+						<img src="images/real2.png">
+					</section>
+				</section>
+
+				
+				
+
+				<section>
+					<h2>Merci pour votre Attention</h2>
+					
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
