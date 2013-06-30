@@ -59,9 +59,9 @@
 	/*	Setting a really big value for border-radius
 		will make the divs perfect circles */
 		
-	-moz-border-radius:100px;
-	-webkit-border-radius:100px;
-	border-radius:100px;
+	-moz-border-radius:0px;
+	-webkit-border-radius:0px;
+	border-radius:0px;
 }
 
 /*	Positioning the animated divs outside the
