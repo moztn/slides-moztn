@@ -1,0 +1,104 @@
+.bannerHolder{
+  /* The main banner unordered list */
+
+	height:270px;
+	width:270px;
+	
+	float:left;
+	margin:20px 15px;
+	padding:10px;
+	background:#f7f7f7;
+	border:1px solid #eee;
+
+	/* CSS3 rounded corners */
+
+	-moz-border-radius:12px;
+	-webkit-border-radius:12px;
+	border-radius:12px;
+}
+
+.bannerHolder li{
+	/* Disabling the bullet of the li elements: */
+	list-style:none;
+	display:inline;
+}
+
+.banner{
+	/* The banner divs */
+	position:relative;
+	width:300px;
+	height:160px;
+	overflow:hidden;
+	float:left;
+	margin-bottom:10px;
+}
+
+.banner img{
+	/* The banner divs */
+/*
+	display:block;
+	border:none;
+*/
+ box-shadow: 0 0 16px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5);
+    height: auto;
+    margin-bottom: 10px;
+    max-width: 300px;
+    width: 100%;
+}
+
+.banner div{
+	/* The dark animated divs */
+	
+	position:absolute;
+	z-index:100;
+	background-color:#222;
+	width:60px;
+	height:60px;
+	cursor:pointer;
+	
+	/*	Setting a really big value for border-radius
+		will make the divs perfect circles */
+		
+	-moz-border-radius:100px;
+	-webkit-border-radius:100px;
+	border-radius:100px;
+}
+
+/*	Positioning the animated divs outside the
+	corners of the visible banner area: */
+
+.banner .cornerTL{ left:-63px;top:-63px; }
+.banner .cornerTR{ right:-63px;top:-63px; }
+.banner .cornerBL{ left:-63px;bottom:-63px; }
+.banner .cornerBR{ right:-63px;bottom:-63px; }
+
+.banner p{
+	/* The "Visit Company" text */
+	
+	display:none;	/* hidden by default */
+	
+	left:0;
+	top:25%;
+	width:auto;
+	z-index:200;
+	position:absolute;
+	padding-left:20px;
+	padding-right:20px;
+	font-family:Tahoma, Arial, Helvetica, sans-serif;
+	color:#FFFFFF !important;
+	font-size:12px;
+	text-align:center;
+	
+	cursor:pointer;
+	overflow:scroll-y;
+}
+
+/* The styles below are only necessary for the styling of the demonstration page: */
+
+#main{
+	position:relative;
+	margin:0 auto 30px;
+	width:660px;
+}
+
+
