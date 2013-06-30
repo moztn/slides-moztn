@@ -65,7 +65,8 @@
     margin-bottom: 10px;
     width: 100%;
     max-width: 300px;
-    height: auto;
+    height: 160px;
+    
 }
 .products #reserved {
     position: relative;
