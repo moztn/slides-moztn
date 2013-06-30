@@ -35,7 +35,7 @@
                 $('body').backtotop();
             });
         </script>
-
+	<link rel="stylesheet" type="text/css" href="css/styles.css" />
     </head>
     <body id="products-page" class="html-ltr sand lang-en-US">
         <div id="tabzilla-panel" class="tabzilla-closed" tabindex="-1">
@@ -172,21 +172,33 @@
                 <section id="firefoxos" class="billboard products">
                     <h1>Firefox OS</h1>
                     <ul>
-                        <li>                            
-                            <img src="img/FirefoxOSDesign.png" alt="">
-                            <div class="div-down-demo">                                   
-                              <button class="demo button" onClick="target='_blank';window.open('demo/FirefoxOSDesign')"><span>Online</span></button>
-                              <button class="download button" onClick="window.location.href='downloads/FirefoxOSDesign.zip'"><span>Download</span></button>
-                            </div>
-                            <p>Une présentation qui introduit l'interface utilisateur ( User interface ) du FirefoxOS et des techniques utilisées pour aider les développeurs avec le design des leurs applications.</p>                            
+                        <li>       
+				<div class="banner">
+					<img src="img/FirefoxOSDesign.png" alt="">                            
+					<p class="companyInfo">Une présentation qui introduit l'interface utilisateur ( User interface ) du FirefoxOS et des techniques utilisées pour aider les développeurs avec le design des leurs applications.</p>                            
+					<div class="cornerTL"></div>
+					<div class="cornerTR"></div>
+					<div class="cornerBL"></div>
+					<div class="cornerBR"></div>
+				</div>
+				<div class="div-down-demo">                                   
+	                              <button class="demo button" onClick="target='_blank';window.open('demo/FirefoxOSDesign')"><span>Online</span></button>
+	                              <button class="download button" onClick="window.location.href='downloads/FirefoxOSDesign.zip'"><span>Download</span></button>
+	                        </div>
                         </li>
-                        <li>                            
-                            <img src="img/firefoxOSAppDay.png" alt="">
-                            <div style="text-align:center"> 
-                              <button class="demo button" onClick="target='_blank';window.open('demo/firefoxOSAppDay')"><span>Online</span></button>
-                              <button class="download button" onClick="window.location.href='downloads/firefoxOSAppDay.zip'"><span>Download</span></button>
-                            </div>
-                            <p> Introduction sur les OpenWebapps et présentation avec quelques des exemples des WebAPIs dans FirefoxOS</p>                            
+                        <li>                  
+				<div class="banner">
+					<img src="img/firefoxOSAppDay.png" alt="">                            
+					<p class="companyInfo"> Introduction sur les OpenWebapps et présentation avec quelques des exemples des WebAPIs dans FirefoxOS</p>    
+					<div class="cornerTL"></div>
+					<div class="cornerTR"></div>
+					<div class="cornerBL"></div>
+					<div class="cornerBR"></div>
+				</div>
+	                            <div style="text-align:center"> 
+	                              <button class="demo button" onClick="target='_blank';window.open('demo/firefoxOSAppDay')"><span>Online</span></button>
+	                              <button class="download button" onClick="window.location.href='downloads/firefoxOSAppDay.zip'"><span>Download</span></button>
+	                            </div>                        
                         </li>  
                         <li id="reserved">
                             <img src="img/badge-reserved.jpg" alt="">
@@ -288,5 +300,6 @@
         <![endif]-->
         <script src="js/mozorg-resp-min.js"></script>
         <script src="js/tabzilla.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
     </body>
 </html>
