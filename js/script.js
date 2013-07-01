@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
   // Lowering the opacity of all slide in divs
-	$('.banner div').css('opacity',0.4);
+	$('.banner div').css('opacity',0.6);
 
 	// Using the hover method 
 	$('.banner').hover(function(){
@@ -13,7 +13,7 @@ $(document).ready(function(){
 		// Find all the divs inside the banner div,
 		// and animate them with the new size
 		
-		el.find('div').stop().animate({width:300,height:160},'slow',function(){
+		el.find('div').stop().animate({width:300,height:300},'slow',function(){
 			// Show the "Visit Company" text:
 			el.find('p').fadeIn('fast');
 		});
