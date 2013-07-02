@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
   // Lowering the opacity of all slide in divs
-	$('.banner div').css('opacity',0.6);
+	$('.banner div').css('opacity',0.4);
 
 	// Using the hover method 
 	$('.banner').hover(function(){
