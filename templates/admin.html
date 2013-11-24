@@ -1,6 +1,64 @@
 {% extends "layout.html" %}
 {% block body %}
-               <section id="products" class="billboard products">
-                    <h1>Administration Panel</h1>
-               </section>
+              <script type="text/javascript" language="javascript">
+                function showForm(){
+                  $('#slideSubmitForm').slideDown('slow');
+                }
+              </script>
+              <section id="products" class="billboard products">
+                  <h1>Administration Panel</h1>
+                <table id="slides-list">
+                 <thead>
+                   <tr>
+                     <th>#</th>
+                     <th>Title</th>
+                     <th>Description</th>
+                     <th>URL</th>
+                     <th>Category</th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                   {% for c in categories %} 
+                     {% for s in (c|getSlides) %}
+                       <tr>
+                         <th>{{ s.id }}</th>
+                         <th>{{ s.title }}</th>
+                         <th>{{ s.description }}</th>
+                         <th>{{ s.url }}</th>
+                         <th>{{ c.name}}</th>
+                       </tr>
+                     {% endfor %}
+                   {% endfor %}
+                 </tbody>
+                 <tfoot>
+                   <tr>
+                     <th colspan="5">
+                       <div id="addButton" class="blue button" onClick="showForm()">Add new slide</div></th>
+                   </tr>
+                 </tfoot>
+               </table>
+                  <form method="POST" action="{{ url_for('admin') }}" id="slideSubmitForm" hidden>
+                  <table>     
+                    <tr>
+                      <td>
+                       <label>Title</label>
+                      </td>
+                      <td>
+                       <input type="text" name="title" required/>
+                      </td>
+                    </tr>
+                    <tr>
+                       <td><label>Github URL</label></td>
+                       <td><input type="text" name="url" required/></td>
+                    </tr>
+                    <tr>
+                       <td><label>Description</label></td>
+                       <td><textarea name="description" required></textarea></td>
+                    </tr>
+                    <tr>
+                     <td><input type="submit" value="submit" class="blue button"/></td>
+                    </tr>
+                    </table>
+                  </form>
+              </section>
 {% endblock %}
