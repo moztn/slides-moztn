@@ -8,26 +8,26 @@
             <!-- Facebook meta tag -->
         <meta property="og:title" content="Mozilla Tunisia Presenation" />
         <meta property="og:url" content="http://mozilla-tunisia.org" />
-        <meta property="og:image" content="img/FirefoxOSDesign.png" />
+        <meta property="og:image" content="{{ url_for('static', filename='img/FirefoxOSDesign.png')}}" />
         <meta property="og:site_name" content="Mozilla Tunisia Presentation" />
         <meta property="og:description" content="Dans cette page vous treverez toutes les présentations réalisé par la communauté Mozilla Tunisia" />
         
         <title>Mozilla Tunisia - Slides</title>
-        <link href="css/tabzilla.css" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/tabzilla.css')}}" rel="stylesheet">
         <!--[if lte IE 8]>
         <script src="//mozorg.cdn.mozilla.net/media/js/libs/html5shiv.js"></script>
         <![endif]-->
-        <link rel="stylesheet" media="screen,projection,tv" href="css/responsive-min.css">
-        <link rel="stylesheet" media="screen,projection,tv" href="css/products-min.css">
-        <link rel="shortcut icon" href="img/Favicon.ico">
-        <script id="undefined" src="js/inpage_linkid.js" async="" type="text/javascript"></script>
-        <script src="js/ga.js" async="" type="text/javascript"></script>
-        <script src="js/site-min.js"></script>
-        <script src="js/smoothscroll.js"></script>
+        <link rel="stylesheet" media="screen,projection,tv" href="{{ url_for('static', filename='css/responsive-min.css')}}">
+        <link rel="stylesheet" media="screen,projection,tv" href="{{ url_for('static', filename='css/products-min.css')}}">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='img/Favicon.ico')}}">
+        <script id="undefined" src="{{ url_for('static', filename='js/inpage_linkid.js')}}" async="" type="text/javascript"></script>
+        <script src="{{ url_for('static', filename='js/ga.js')}}" async="" type="text/javascript"></script>
+        <script src="{{ url_for('static', filename='js/site-min.js')}}"></script>
+        <script src="{{ url_for('static', filename='js/smoothscroll.js')}}"></script>
           
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js?ver=1.7.1"></script>
         <!-- jQuery -->
-        <script type="text/javascript" src="js/scrolltotop.js"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/scrolltotop.js')}}"></script>
         <!-- The plugin file -->
         <script type="text/javascript">
             jQuery(document).ready(function($){
@@ -123,7 +123,7 @@
                     </nav>
                     <!-- <h2> -->
                         <a href="http://mozilla-tunisia.org">
-                            <img src="img/logo.png" alt="mozilla" style="margin-top: 15px;">
+                            <img src="{{ url_for('static', filename='img/logo.png')}}" alt="mozilla" style="margin-top: 15px;">
                         </a>
                     <!-- </h2> -->
                 </header>
@@ -145,7 +145,7 @@
                     <ul>
                         <li>  
                     
-                            <img src="img/Pres-Mozilla.png" alt="">
+                            <img src="{{ url_for('static', filename='img/Pres-Mozilla.png')}}" alt="">
                                 <div style="text-align:center" > 
                               <button class="demo button" onClick="target='_blank';window.open('demo/Pres-Mozilla')"><span>Online</span></button>
                                   <button class="download button" onClick="window.location.href='downloads/Pres-Mozilla.zip'"><span>Download</span></button>
@@ -154,7 +154,7 @@
                     
                         </li>                                               
                         <li> 
-                            <img src="img/WebmakerSession.png" alt="">
+                            <img src="{{ url_for('static', filename='img/WebmakerSession.png')}}" alt="">
                             <div style="text-align:center"> 
                               <button class="demo button" onClick="target='_blank';window.open('demo/WebmakerSession')"><span>Online</span></button>
                               <button class="download button" onClick="window.location.href='downloads/WebmakerSession.zip'"><span>Download</span></button>
@@ -164,7 +164,7 @@
 
                         </li>
                         <li id="reserved">
-                            <img src="img/badge-reserved.jpg" alt="">
+                            <img src="{{ url_for('static', filename='img/badge-reserved.jpg')}}" alt="">
                             <p>Reserved&nbsp;for future&nbsp;presentation.</p>
                         </li>                                                                                                
                     </ul>
@@ -173,7 +173,7 @@
                     <h1>Firefox OS</h1>
                     <ul>
                         <li>                            
-                            <img src="img/FirefoxOSDesign.png" alt="">
+                            <img src="{{ url_for('static', filename='img/FirefoxOSDesign.png')}}" alt="">
                             <div class="div-down-demo">                                   
                               <button class="demo button" onClick="target='_blank';window.open('demo/FirefoxOSDesign')"><span>Online</span></button>
                               <button class="download button" onClick="window.location.href='downloads/FirefoxOSDesign.zip'"><span>Download</span></button>
@@ -181,7 +181,7 @@
                             <p>Une présentation qui introduit l'interface utilisateur ( User interface ) du FirefoxOS et des techniques utilisées pour aider les développeurs avec le design des leurs applications.</p>                            
                         </li>
                         <li>                            
-                            <img src="img/firefoxOSAppDay.png" alt="">
+                            <img src="{{ url_for('static', filename='img/firefoxOSAppDay.png')}}" alt="">
                             <div style="text-align:center"> 
                               <button class="demo button" onClick="target='_blank';window.open('demo/firefoxOSAppDay')"><span>Online</span></button>
                               <button class="download button" onClick="window.location.href='downloads/firefoxOSAppDay.zip'"><span>Download</span></button>
@@ -189,7 +189,7 @@
                             <p> Introduction sur les OpenWebapps et présentation avec quelques des exemples des WebAPIs dans FirefoxOS</p>                            
                         </li>  
                         <li id="reserved">
-                            <img src="img/badge-reserved.jpg" alt="">
+                            <img src="{{ url_for('static', filename='img/badge-reserved.jpg')}}" alt="">
                             <p>Reserved&nbsp;for future&nbsp;presentation.</p>
                         </li>
                     </ul>
@@ -198,7 +198,7 @@
                     <h1>Autres</h1>
                     <ul>
                         <li>                            
-                            <img src="img/HTML5_Pres.png" alt="">
+                            <img src="{{ url_for('static', filename='img/HTML5_Pres.png')}}" alt="">
                             <div style="text-align:center"> 
                               <button class="demo button" onClick="target='_blank';window.open('demo/HTML5_Pres')"><span>Online</span></button>
                               <button class="download button" onClick="window.location.href='downloads/HTML5_Pres.zip'"><span>Download</span></button>
@@ -206,7 +206,7 @@
                             <p>Cette présentation parle de l'historique et les nouveautés du langage HTML / HTML5</p>                            
                         </li>
                         <li>                            
-                            <img src="img/hackerWeb.png" alt="">
+                            <img src="{{ url_for('static', filename='img/hackerWeb.png')}}" alt="">
                             <div style="text-align:center"> 
                               <button class="demo button" onClick="target='_blank';window.open('demo/hackerWeb')"><span>Online</span></button>
                               <button class="download button" onClick="window.location.href='downloads/hackerWeb.zip'"><span>Download</span></button>
@@ -214,7 +214,7 @@
                             <p>Hackerweb: une présentation qui explique les bases du HTML5 et CSS3 pour des lycéens faites à Medjez el beb</p>                            
                         </li>
                         <li>                            
-                            <img src="img/responsivewebdesign.png" alt="">
+                            <img src="{{ url_for('static', filename='img/responsivewebdesign.png')}}" alt="">
                             <div style="text-align:center"> 
                               <button class="demo button" onClick="target='_blank';window.open('demo/responsivewebdesign')"><span>Online</span></button>
                               <button class="download button" onClick="window.location.href='downloads/responsivewebdesign.zip'"><span>Download</span></button>
@@ -222,7 +222,7 @@
                             <p>à partir de cette petite présentation: On a expliquer l'objectif et l'utilisation nécessaire de cette nouvelle technologie en détaillant l'intégration des Media Query et les framework qui sont basées sur le responsive web design et mentionner l'outil de firefox responsive design view .</p>                            
                         </li>
                         <li>                            
-                            <img src="img/womoz.png" alt="">
+                            <img src="{{ url_for('static', filename='img/womoz.png')}}" alt="">
                             <div style="text-align:center"> 
                               <button class="demo button" onClick="target='_blank';window.open('demo/womoz')"><span>Online</span></button>
                               <button class="download button" onClick="window.location.href='downloads/womoz.zip'"><span>Download</span></button>
@@ -230,7 +230,7 @@
                             <p>présenter l'initiative du womoz .</p>                            
                         </li>
                         <li>                            
-                            <img src="img/accessibility.png" alt="">
+                            <img src="{{ url_for('static', filename='img/accessibility.png')}}" alt="">
                             <div style="text-align:center"> 
                               <button class="demo button" onClick="target='_blank';window.open('demo/webmaker-project')"><span>Online</span></button>
                               <button class="download button" onClick="window.location.href='downloads/webmaker-project.zip'"><span>Download</span></button>
@@ -238,7 +238,7 @@
                             <p>Expliquer le projet "An Accessible Web" avec les handicapés .</p>                            
                         </li>
                         <li id="reserved">
-                            <img src="img/badge-reserved.jpg" alt="">
+                            <img src="{{ url_for('static', filename='img/badge-reserved.jpg')}}" alt="">
                             <p>Reserved&nbsp;for future&nbsp;presentation.</p>
                         </li>                        
                     </ul>
@@ -247,7 +247,7 @@
                     <h1>Comming Soon</h1>
                     <ul>                        
                         <li id="reserved">
-                            <img src="img/badge-reserved.jpg" alt="">
+                            <img src="{{ url_for('static', filename='img/badge-reserved.jpg')}}" alt="">
                             <p>Reserved&nbsp;for future&nbsp;categorie.</p>
                         </li>
                     </ul>
@@ -259,7 +259,7 @@
             <footer id="colophon" class="">
                 <div class="row">
                     <div class="footer-logo">
-                        <a href="https://www.mozilla.org/en-US/"><img src="img/footer-mozilla.png" alt="mozilla"></a>
+                        <a href="https://www.mozilla.org/en-US/"><img src="{{ url_for('static', filename='img/footer-mozilla.png')}}" alt="mozilla"></a>
                     </div>
                     <div class="footer-license">
                         <p>Certaines parties de ce contenu sont ©1998–2013 par les contributeurs individuels de mozilla.org. Le contenu est disponible sous <a href="https://www.mozilla.org/foundation/licensing/website-content.html">licence Creative Commons</a>.              
@@ -286,7 +286,7 @@
         <!--[if IE 9]>
         <script src="//mozorg.cdn.mozilla.net/media/js/libs/matchMedia.js"></script>
         <![endif]-->
-        <script src="js/mozorg-resp-min.js"></script>
-        <script src="js/tabzilla.js"></script>
+        <script src="{{ url_for('static', filename='js/mozorg-resp-min.js')}}"></script>
+        <script src="{{ url_for('static', filename='js/tabzilla.js')}}"></script>
     </body>
 </html>
