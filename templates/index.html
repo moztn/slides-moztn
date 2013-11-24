@@ -1,43 +1,6 @@
-<!DOCTYPE html>
-<html class="linux js" dir="ltr" lang="en-US">
-    <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-            <!-- Facebook meta tag -->
-        <meta property="og:title" content="Mozilla Tunisia Presenation" />
-        <meta property="og:url" content="http://mozilla-tunisia.org" />
-        <meta property="og:image" content="{{ url_for('static', filename='img/FirefoxOSDesign.png')}}" />
-        <meta property="og:site_name" content="Mozilla Tunisia Presentation" />
-        <meta property="og:description" content="Dans cette page vous treverez toutes les présentations réalisé par la communauté Mozilla Tunisia" />
-        
-        <title>Mozilla Tunisia - Slides</title>
-        <link href="{{ url_for('static', filename='css/tabzilla.css')}}" rel="stylesheet">
-        <!--[if lte IE 8]>
-        <script src="//mozorg.cdn.mozilla.net/media/js/libs/html5shiv.js"></script>
-        <![endif]-->
-        <link rel="stylesheet" media="screen,projection,tv" href="{{ url_for('static', filename='css/responsive-min.css')}}">
-        <link rel="stylesheet" media="screen,projection,tv" href="{{ url_for('static', filename='css/products-min.css')}}">
-        <link rel="shortcut icon" href="{{ url_for('static', filename='img/Favicon.ico')}}">
-        <script id="undefined" src="{{ url_for('static', filename='js/inpage_linkid.js')}}" async="" type="text/javascript"></script>
-        <script src="{{ url_for('static', filename='js/ga.js')}}" async="" type="text/javascript"></script>
-        <script src="{{ url_for('static', filename='js/site-min.js')}}"></script>
-        <script src="{{ url_for('static', filename='js/smoothscroll.js')}}"></script>
-          
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js?ver=1.7.1"></script>
-        <!-- jQuery -->
-        <script type="text/javascript" src="{{ url_for('static', filename='js/scrolltotop.js')}}"></script>
-        <!-- The plugin file -->
-        <script type="text/javascript">
-            jQuery(document).ready(function($){
-                //Back to top plugin instanciation
-                $('body').backtotop();
-            });
-        </script>
-
-    </head>
-    <body id="products-page" class="html-ltr sand lang-en-US">
+{% extends "layout.html" %}
+{% block body %}
+   <body id="products-page" class="html-ltr sand lang-en-US">
         <div id="tabzilla-panel" class="tabzilla-closed" tabindex="-1">
             <div id="tabzilla-contents">
                 <div id="tabzilla-promo">
@@ -289,4 +252,4 @@
         <script src="{{ url_for('static', filename='js/mozorg-resp-min.js')}}"></script>
         <script src="{{ url_for('static', filename='js/tabzilla.js')}}"></script>
     </body>
-</html>
+{% endblock %}
