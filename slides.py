@@ -34,6 +34,10 @@ def index():
   categories = getCategories()
   return render_template('index.html', categories = categories)
 
+@app.route('/admin')
+def admin():
+  return render_template('admin.html')
+
 @app.teardown_appcontext
 def shutdown_session(exeception=None):
   db_session.remove()
