@@ -36,7 +36,8 @@ def index():
 
 @app.route('/admin')
 def admin():
-  return render_template('admin.html')
+  categories = getCategories()
+  return render_template('admin.html', categories = categories)
 
 @app.teardown_appcontext
 def shutdown_session(exeception=None):
