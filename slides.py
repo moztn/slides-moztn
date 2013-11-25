@@ -1,6 +1,6 @@
 from database import db_session
 from models import Administrator, Slide, Category
-from flask import Flask, url_for, render_template
+from flask import Flask, url_for, render_template, request, redirect, abort
 app = Flask(__name__)
 
 
@@ -13,6 +13,27 @@ def addSlide(title, url, description, category, screenshot=None):
   s = Slide(title, url, description, category, screenshot)
   db_session.add(s)
   db_session.commit()
+
+def addSlideFromForm(request):
+  title = None
+  url = None
+  description = None
+  category = None
+  screenshot = None
+  if 'title' in request.form:
+    title = request.form['title']
+  if 'url' in request.form:
+    url = request.form['url']
+  if 'description' in request.form:
+    description = request.form['description']
+  if 'category' in request.form:
+    category = request.form['category']
+  if 'screenshot' in request.form:
+    screenshot = request.form['screenshot']
+  if None in [title, url, description, category]:
+    abort(400, "Incomplete form !")
+    return
+  addSlide(title, url, description, category, screenshot)
 
 # retrives the list of categories from the database
 def getCategories():
@@ -34,8 +55,10 @@ def index():
   categories = getCategories()
   return render_template('index.html', categories = categories)
 
-@app.route('/admin')
+@app.route('/admin', methods=['GET', 'POST'])
 def admin():
+  if request.method == 'POST':
+    addSlideFromForm(request)
   categories = getCategories()
   return render_template('admin.html', categories = categories)
 
@@ -44,4 +67,4 @@ def shutdown_session(exeception=None):
   db_session.remove()
 
 if __name__ == '__main__':
-  app.run(host='0.0.0.0')
+  app.run(debug=True, host='0.0.0.0')
