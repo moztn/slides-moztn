@@ -15,10 +15,7 @@ slides-moztn is a webapp written with the micro web framework Flask
   Before running the app you have to configure the database :
   <pre>
     $ cd slides-moztn
-    $ python
-    >>> from database import init_db
-    >>> init_db()
-    >>> quit()
+    $ python first_run.py
   </pre>
 
   Then to run the app :
