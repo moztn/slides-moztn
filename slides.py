@@ -1,39 +1,56 @@
 from database import db_session
 from models import Administrator, Slide, Category
-from flask import Flask, url_for, render_template, request, redirect, abort
+from flask import Flask, url_for, render_template, session, redirect, escape, request
 app = Flask(__name__)
 
 
-def addCategory(name):
-  cat = Category(name)
+@app.route('/addCategory', methods=['GET', 'POST'])
+def addCategory():
+  cat = Category(request.form['name'])
   db_session.add(cat)
   db_session.commit()
+  status = True
+  categories = getCategories()
+  return render_template('admin.html', categories = categories, status = status, action='added')
 
-def addSlide(title, url, description, category, screenshot=None):
-  s = Slide(title, url, description, category, screenshot)
+@app.route('/addSlide', methods=['GET', 'POST'])
+def addSlide():
+
+  screenshot = None
+  s = Slide(request.form['title'], request.form['url'], request.form['description'], request.form['categorie'], screenshot)
   db_session.add(s)
   db_session.commit()
 
-def addSlideFromForm(request):
-  title = None
-  url = None
-  description = None
-  category = None
-  screenshot = None
-  if 'title' in request.form:
-    title = request.form['title']
-  if 'url' in request.form:
-    url = request.form['url']
-  if 'description' in request.form:
-    description = request.form['description']
-  if 'category' in request.form:
-    category = request.form['category']
-  if 'screenshot' in request.form:
-    screenshot = request.form['screenshot']
-  if None in [title, url, description, category]:
-    abort(400, "Incomplete form !")
-    return
-  addSlide(title, url, description, category, screenshot)
+  categories = getCategories()
+  status = True
+  return render_template('admin.html', categories = categories, status = status, action='added')
+
+@app.route('/deleteslide', methods=['GET', 'POST'])
+def deleteSlide():
+  slide_id = request.form['id']
+  s = Slide.query.get(slide_id)
+  db_session.delete(s)
+  db_session.commit()
+  status = True
+  categories = getCategories()
+  return render_template('admin.html', categories = categories, status = status, action='deleted')
+
+
+@app.route('/updateslide', methods=['GET', 'POST'])
+def updateSlide():
+  slide_id = request.form['id']
+  s = Slide.query.get(slide_id)
+  s.title = request.form['title']
+  s.description = request.form['description']
+  s.url = request.form['url']
+  s.category = request.form['categorie']
+  db_session.add(s)
+  db_session.commit()
+  status = True
+  categories = getCategories()
+  return render_template('admin.html', categories = categories, status = status, action='updated')
+
+
 
 # retrives the list of categories from the database
 def getCategories():
@@ -50,21 +67,29 @@ def isAdmin(email):
   return (len(Administrator.query.filter(Administrator.email == email)) != 0)
 
 
+# @app.route('/')
+# def index():
+#   categories = getCategories()
+#   slides = getSlides()
+#   return render_template('index.html', categories = categories, slides = slides)
+
 @app.route('/')
 def index():
   categories = getCategories()
+  # slides = Slide.query.all()
   return render_template('index.html', categories = categories)
 
-@app.route('/admin', methods=['GET', 'POST'])
+@app.route('/admin')
 def admin():
-  if request.method == 'POST':
-    addSlideFromForm(request)
   categories = getCategories()
+  # return render_template('admin.html', categories = categories)
+  # slides = getSlides()
   return render_template('admin.html', categories = categories)
+
 
 @app.teardown_appcontext
 def shutdown_session(exeception=None):
   db_session.remove()
 
 if __name__ == '__main__':
-  app.run(debug=True, host='0.0.0.0')
+  app.run(host='0.0.0.0', debug=True)
