@@ -17,15 +17,22 @@
         <!--[if lte IE 8]>
         <script src="//mozorg.cdn.mozilla.net/media/js/libs/html5shiv.js"></script>
         <![endif]-->
+        
+        <link rel="stylesheet" media="screen,projection,tv" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
+        <link rel="stylesheet" media="screen,projection,tv" href="{{ url_for('static', filename='css/bootstrap-responsive.min.css')}}">
+
         <link rel="stylesheet" media="screen,projection,tv" href="{{ url_for('static', filename='css/responsive-min.css')}}">
         <link rel="stylesheet" media="screen,projection,tv" href="{{ url_for('static', filename='css/products-min.css')}}">
         <link rel="shortcut icon" href="{{ url_for('static', filename='img/Favicon.ico')}}">
+
+        
+
         <script id="undefined" src="{{ url_for('static', filename='js/inpage_linkid.js')}}" async="" type="text/javascript"></script>
         <script src="{{ url_for('static', filename='js/ga.js')}}" async="" type="text/javascript"></script>
         <script src="{{ url_for('static', filename='js/site-min.js')}}"></script>
         <script src="{{ url_for('static', filename='js/smoothscroll.js')}}"></script>
           
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js?ver=1.7.1"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js')}}"></script>
         <!-- jQuery -->
         <script type="text/javascript" src="{{ url_for('static', filename='js/scrolltotop.js')}}"></script>
         <!-- The plugin file -->
@@ -35,6 +42,8 @@
                 $('body').backtotop();
             });
         </script>
+
+        <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
 
     </head>
     <body id="products-page" class="html-ltr sand lang-en-US">
@@ -138,6 +147,7 @@
                         <li><a href="#tools">Autres</a></li>
                         <li><a href="#platforms">Comming Soon</a></li>
                     </ul>
+                    
                 </nav>
 {% block body %} {% endblock %}
             </div>

@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from database import Base
+from sqlalchemy.orm import relationship, backref
 
 class Administrator(Base):
   __tablename__ = 'administrators'
@@ -20,9 +21,10 @@ class Slide(Base):
   url = Column(String(255), unique=True, nullable=False)
   description = Column(String(255), nullable=False)
   category = Column(Integer, ForeignKey('categories.id'), nullable=False)
+  # category = relationship('Category', backref=backref('slides', lazy='dynamic'))
   screenshot = Column(String(255))
 
-  def __init__(self, title, url, description, category, screenshot = None):
+  def __init__(self, title = None, url = None, description = None, category = None, screenshot = None):
     self.title = title
     self.url = url
     self.description = description
@@ -37,8 +39,9 @@ class Category(Base):
   __tablename__ = 'categories'
   id = Column(Integer, primary_key=True)
   name = Column(String(255), nullable=False, unique=True)
+  # slides = relationship("Slide", backref="categories")
 
-  def __init__(self, name):
+  def __init__(self, name = None):
     self.name = name
 
   def __repr__(self):
