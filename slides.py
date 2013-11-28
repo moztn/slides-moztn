@@ -16,13 +16,17 @@ def addCategory():
 @app.route('/addSlide', methods=['GET', 'POST'])
 def addSlide():
 
+  status = 1
+  categories = getCategories()
+  message = isValidURL(request.form['url'])
+  if(message != None):
+    return render_template('admin.html', categories = categories, status = status, message = message)
   screenshot = None
   s = Slide(request.form['title'], request.form['url'], request.form['description'], request.form['categorie'], screenshot)
   db_session.add(s)
   db_session.commit()
 
-  categories = getCategories()
-  status = True
+  status = 0
   return render_template('admin.html', categories = categories, status = status, action='added')
 
 @app.route('/deleteslide', methods=['GET', 'POST'])
@@ -73,6 +77,23 @@ def isAdmin(email):
 #   slides = getSlides()
 #   return render_template('index.html', categories = categories, slides = slides)
 
+def isValidURL(url):
+  
+  # Check if the presentation is hosted on github
+  if(url.lower().startswith('https://github.com/') is not True):
+    return "Your slides must be hosted on https://github.com/"
+
+  # Check if the branch 'gh-pages' exists
+  import requests
+  res = requests.get(url+'/tree/gh-pages')
+  
+  if(not res.ok):
+    return "You have to create a 'gh-pages' branch"
+
+  return None
+
+  
+
 @app.route('/')
 def index():
   categories = getCategories()
@@ -84,7 +105,8 @@ def admin():
   categories = getCategories()
   # return render_template('admin.html', categories = categories)
   # slides = getSlides()
-  return render_template('admin.html', categories = categories)
+  status = -1
+  return render_template('admin.html', categories = categories, status = status)
 
 
 @app.teardown_appcontext
