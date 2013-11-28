@@ -6,13 +6,21 @@
     }
 
   </script>
-{% if status %}
+{% if status == 0 %}
   <div class="alert alert-success">
      <button type="button" class="close" data-dismiss="alert">×</button>
     <h4>
         <span>Slide {{action}} succefully</span>
     </h4> 
 </div>
+{% endif %}
+{% if status == 1 %}
+  <div class="alert alert-error">
+    <button type="button" class="close" data-dismiss="alert">x</button>
+    <h4>
+      <span><strong>Ooops !</strong> {{ message }} </span>
+    </h4>
+  </div>
 {% endif %}
 
 
