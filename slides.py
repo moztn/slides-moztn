@@ -70,13 +70,6 @@ def isAdmin(email):
   # the mail is not administrator
   return (len(Administrator.query.filter(Administrator.email == email)) != 0)
 
-
-# @app.route('/')
-# def index():
-#   categories = getCategories()
-#   slides = getSlides()
-#   return render_template('index.html', categories = categories, slides = slides)
-
 def isValidURL(url):
   
   # Check if the presentation is hosted on github
@@ -92,19 +85,14 @@ def isValidURL(url):
 
   return None
 
-  
-
 @app.route('/')
 def index():
   categories = getCategories()
-  # slides = Slide.query.all()
   return render_template('index.html', categories = categories)
 
 @app.route('/admin')
 def admin():
   categories = getCategories()
-  # return render_template('admin.html', categories = categories)
-  # slides = getSlides()
   status = -1
   return render_template('admin.html', categories = categories, status = status)
 
