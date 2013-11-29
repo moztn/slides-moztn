@@ -1,0 +1,233 @@
+{% extends "layout.html" %}
+{% block body %}
+  <script type="text/javascript" language="javascript">
+    function showForm(){
+      $('#slideSubmitForm').slideDown('slow');
+    }
+
+  </script>
+{% if status == 0 %}
+  <div class="alert alert-success">
+     <button type="button" class="close" data-dismiss="alert">×</button>
+    <h4>
+        <span>Slide {{action}} succefully</span>
+    </h4> 
+</div>
+{% endif %}
+{% if status == 1 %}
+  <div class="alert alert-error">
+    <button type="button" class="close" data-dismiss="alert">x</button>
+    <h4>
+      <span><strong>Ooops !</strong> {{ message }} </span>
+    </h4>
+  </div>
+{% endif %}
+
+
+<section id="products" class="billboard products">
+    <div class="span6">
+        <h1>Administration Panel</h1>
+    </div>
+    <div class="span3" style="text-align:right;">
+         <button class="btn btn-info btn-small" data-toggle="modal" data-target="#addcategory">
+            <i class="icon-plus-sign"></i> Add category
+        </button>
+        <button class="btn btn-primary btn-small" data-toggle="modal" data-target="#myModal">
+            <i class="icon-plus-sign"></i> Add slide
+        </button>
+    </div>
+    <table id="slides-list" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>URL</th>
+                <th>Category</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in categories %}
+                {% for s in (c|getSlides) %}
+                    <tr>
+                        <td>{{ s.id }}</td>
+                        <td>{{ s.title }}</td>
+                        <td>{{ s.description }}</td>
+                        <td><a href="{{ s.url }}">{{ s.url }}</a></td>
+                        <td>{{ c.name}}</td>
+                        <td style="width:80px;">
+                            <button data-toggle-dialog="#" data-toggle="modal" data-target="#updateslide" title="Update Slide" class="btn btn-small btn-warning" type="button"><i class="icon-white icon-edit"></i></button>
+                            <button data-toggle-dialog="#" data-toggle="modal" data-target="#delteslide" title="Delete Slide" class="btn btn-danger btn-small" type="button"><i class="icon-white icon-trash"></i></button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+<div class="modal hide fade" id="delteslide" tabindex="-1" role="dialog" aria-labelledby="delteslide">
+    <form method="POST" action="{{ url_for('deleteSlide') }}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="delteslide">Delete a Slide</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete : 
+                        <strong> 
+                            <span class="title-container"></span>
+                        </strong>
+                    </p>
+                    <input type="hidden" name="id" />       
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" value="Delete" class="btn btn-danger"/>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </form>
+</div><!-- /.modal -->
+
+
+
+
+<div class="modal hide fade" id="updateslide" role="dialog" aria-labelledby="labelupdateslide">
+    <form method="POST" action="{{ url_for('updateSlide') }}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="labelupdateslide">Update a Slide</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="span5">
+                        <tr>
+                            <td><label>Title</label></td>
+                            <td><input type="text" name="title" required /></td>
+                        </tr>
+                        <tr>
+                            <td><label>Github URL</label></td>
+                            <td><input type="url" name="url" required /></td>
+                        </tr>
+                        <tr>
+                            <td><label>Description</label></td>
+                            <td><textarea name="description" required></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><label>Category</label></td>
+                            <td>
+                                <select name="categorie">
+                                    {% for c in categories %}
+                                        <option value="{{ c.id }}"> {{ c.name }} </option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                        <input type="hidden" name="id">
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" value="submit" class="btn btn-primary"/>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </form>
+</div><!-- /.modal -->
+
+
+
+<div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
+    <form method="POST" action="{{ url_for('addSlide') }}" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModal">Add new Slide</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="span5">
+                        <tr>
+                            <td><label>Title</label></td>
+                            <td><input type="text" name="title" required /></td>
+                        </tr>
+                        <tr>
+                            <td><label>Github URL</label></td>
+                            <td><input type="url" name="url" required /></td>
+                        </tr>
+                        <tr>
+                            <td><label>Description</label></td>
+                            <td><textarea name="description" required></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><label>Category</label></td>
+                            <td>
+                                <select name="categorie">
+                                    {% for c in categories %}
+                                        <option value="{{ c.id }}"> {{ c.name }} </option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" value="submit" class="btn btn-primary"/>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </form>
+</div><!-- /.modal -->
+
+
+
+<div class="modal hide fade" id="addcategory" tabindex="-1" role="dialog" aria-labelledby="addcategory">
+    <form method="POST" action="{{ url_for('addCategory') }}" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="addcategory">Add new Category</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="span5">
+                        <tr>
+                            <td><label>Name : </label></td>
+                            <td><input type="text" name="name" required /></td>
+                        </tr>                        
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" value="submit" class="btn btn-primary"/>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </form>
+</div><!-- /.modal -->
+
+<script type="text/javascript">
+    $('#slides-list [data-toggle-dialog]').off('click').on('click', function(event){
+        e = $(this);
+        var columns = e.closest('tr').find('td');
+        var id = $(columns[0]).text();
+        var title = $(columns[1]).text();
+        var description = $(columns[2]).text();
+        var url = $(columns[3]).text();
+        $('.title-container').html(title);
+        $('input[name=id]').val(id);
+        $('input[name=title]').val(title);
+        $('textarea[name=description]').val(description);
+        $('input[name=url]').val(url);
+    });
+</script>
+{% endblock %}

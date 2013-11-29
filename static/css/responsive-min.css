@@ -1374,7 +1374,7 @@ nav.menu-bar ol li a span, nav.menu-bar ul li a span {
 nav.menu-bar ol li:first-child a, nav.menu-bar ul li:first-child a {
     border-left: 0;
 }
-.table {
+/*.table {
     border-collapse: collapse;
     border-spacing: 0;
 }
@@ -1394,7 +1394,7 @@ nav.menu-bar ol li:first-child a, nav.menu-bar ul li:first-child a {
     font-size: 16px;
     font-family: 'Open Sans Light', sans-serif;
     font-weight: normal;
-}
+}*/
 .sidebar nav {
     font-family: 'Open Sans Light', sans-serif;
     font-weight: normal;
