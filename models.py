@@ -34,6 +34,15 @@ class Slide(Base):
   def __repr__(self):
     return '<Slide %s>' %(self.title)
 
+  # We will use this fonction to generate the githubio url
+  # Note that we assume that is a correct github url
+  # And the gh-pages branch exists
+  # See function isValidURL in slides.py
+  def getGithubDemoUrl(self):
+    url = self.url.lower()
+    url = url.replace('https://github.com/', '').split('/')
+    newUrl = 'http://'+url[0]+'.github.io/'+url[1]
+    return newUrl
 
 class Category(Base):
   __tablename__ = 'categories'
