@@ -44,6 +44,11 @@ class Slide(Base):
     newUrl = 'http://'+url[0]+'.github.io/'+url[1]
     return newUrl
 
+  def getGithubDownloadUrl(self):
+    url = self.url.lower()
+    url = url + '/archive/master.zip'
+    return url
+
 class Category(Base):
   __tablename__ = 'categories'
   id = Column(Integer, primary_key=True)
