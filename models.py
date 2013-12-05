@@ -39,8 +39,7 @@ class Slide(Base):
   # And the gh-pages branch exists
   # See function isValidURL in slides.py
   def getGithubDemoUrl(self):
-    url = self.url.lower()
-    url = url.replace('https://github.com/', '').split('/')
+    url = self.url[19:].split('/')
     newUrl = 'http://'+url[0]+'.github.io/'+url[1]
     return newUrl
 
