@@ -8,9 +8,8 @@ slides-moztn is a webapp written with the micro web framework Flask
   You have to install the following python modules :
   Flask and Flask-SQLAlchemy
   <pre>
-    sudo pip install Flask Flask-SQLAlchemy
-  </pre>
-
+    pip install -r requirements.txt
+  </pre> 
 ## Running :
   Before running the app you have to configure the database :
   <pre>
