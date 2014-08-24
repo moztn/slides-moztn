@@ -1,15 +1,4 @@
-Two packeges need to be installed.
-
-** Flask : 
-Flask is a web application framework written in python.
-
-** Flask-SQLAlchemy :
-Flask-SQLAlchemy is an extention of Flask that helps the application to support SQLAlchemy which is an SQL Toolkit and Object oriental mapper for python.
-
-Use the following command to install the two packages Flask and Flask-SQLAlchemy :
-
-  sudo pip install Flask Flask-SQLAlchemy 
-
-
+Flask
+Flask-SQLAlchemy
 
 
