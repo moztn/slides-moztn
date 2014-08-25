@@ -23,7 +23,7 @@ pip and virtualenv need to be installed on your machine.
   3-Installing dependencies:
    <pre>
      cd slides-moztn
-     sudo pip install -r requirements.txt
+     pip install -r requirements.txt
    </pre>
 
   4-Configuring the database:
