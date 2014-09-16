@@ -1,6 +1,7 @@
 from database import db_session
 from models import Administrator, Slide, Category
 from flask import Flask, url_for, render_template, session, redirect, escape, request
+from sqlalchemy.exc import IntegrityError
 app = Flask(__name__)
 
 
@@ -13,22 +14,26 @@ def addCategory():
   categories = getCategories()
   return render_template('admin.html', categories = categories, status = status, action='added')
 
+
 @app.route('/addSlide', methods=['GET', 'POST'])
 def addSlide():
-
-  status = 1
-  categories = getCategories()
-  message = isValidURL(request.form['url'])
-  if(message != None):
-    return render_template('admin.html', categories = categories, status = status, message = message)
-  screenshot = None
-  s = Slide(request.form['title'], request.form['url'], request.form['description'], request.form['categorie'], screenshot)
-  db_session.add(s)
-  db_session.commit()
-
-  status = 0
-  return render_template('admin.html', categories = categories, status = status, action='added')
-
+  try:
+    status = 1
+    categories = getCategories()
+    message = isValidURL(request.form['url'])
+    if(message != None):
+      return render_template('admin.html', categories = categories, status = status, message = message)
+    screenshot = None
+    s = Slide(request.form['title'], request.form['url'], request.form['description'], request.form['categorie'], screenshot)
+    db_session.add(s)
+    db_session.commit()
+    status = 0
+    return render_template('admin.html', categories = categories, status = status, action='added')
+  except IntegrityError as e:
+    db_session.rollback()
+    return render_template('admin.html', categories = categories, status = status, message ='This slide already exists')
+    
+    
 @app.route('/deleteslide', methods=['GET', 'POST'])
 def deleteSlide():
   slide_id = request.form['id']
