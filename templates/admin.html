@@ -6,15 +6,27 @@
     }
 
   </script>
-{% if status == 0 %}
-  <div class="alert alert-success">
-     <button type="button" class="close" data-dismiss="alert">×</button>
-    <h4>
-        <span>Slide {{action}} succefully</span>
-    </h4> 
-</div>
+
+{% if status == True %}
+{{ test }}
+    {% if  operation== 'categories' %}
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <h4>
+                <span>Category {{action}} succefully</span>
+            </h4> 
+        </div>
+    {% else %}
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <h4>
+                <span>Slide {{action}} succefully</span>
+            </h4> 
+        </div>
+    {% endif %}
 {% endif %}
-{% if status == 1 %}
+
+{% if status == False %}
   <div class="alert alert-error">
     <button type="button" class="close" data-dismiss="alert">x</button>
     <h4>
@@ -207,8 +219,8 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <input type="submit" value="submit" class="btn btn-primary"/>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

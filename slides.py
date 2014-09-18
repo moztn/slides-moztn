@@ -2,17 +2,23 @@ from database import db_session
 from models import Administrator, Slide, Category
 from flask import Flask, url_for, render_template, session, redirect, escape, request
 from sqlalchemy.exc import IntegrityError
-app = Flask(__name__)
 
+app = Flask(__name__)
 
 @app.route('/addCategory', methods=['GET', 'POST'])
 def addCategory():
   cat = Category(request.form['name'])
-  db_session.add(cat)
-  db_session.commit()
-  status = True
-  categories = getCategories()
-  return render_template('admin.html', categories = categories, status = status, action='added')
+ 
+  try:
+    ## check if category already exists in the database
+    Category.query.filter_by(name=cat)
+    db_session.add(cat)
+    db_session.commit()
+    status = True
+    action = 'added'
+  except:   
+    status = False
+  return render_template('admin.html', status = status, operation='categories', action='added', message='category already exists in database')
 
 
 @app.route('/addSlide', methods=['GET', 'POST'])
