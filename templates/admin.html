@@ -6,21 +6,32 @@
     }
 
   </script>
-{% if status == 0 %}
-  <div class="alert alert-success">
-     <button type="button" class="close" data-dismiss="alert">×</button>
-    <h4>
-        <span>Slide {{action}} succefully</span>
-    </h4> 
-</div>
+
+{% if status == True %}
+    {% if operation== 'categories' %}
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+                <h4>
+                    <span>Category {{action}} succefully</span>
+                </h4>
+        </div>
+    {% else %}
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+                <h4>
+                    <span>Slide {{action}} succefully</span>
+                </h4>
+        </div>
+    {% endif %}
 {% endif %}
-{% if status == 1 %}
-  <div class="alert alert-error">
-    <button type="button" class="close" data-dismiss="alert">x</button>
-    <h4>
-      <span><strong>Ooops !</strong> {{ message }} </span>
-    </h4>
-  </div>
+
+{% if status == False %}
+    <div class="alert alert-error">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+            <h4>
+                <span><strong>Ooops !</strong> {{ message }} </span>
+            </h4>   
+    </div>
 {% endif %}
 
 
