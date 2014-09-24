@@ -47,6 +47,13 @@ def deleteSlide():
 
 @app.route('/updateslide', methods=['GET', 'POST'])
 def updateSlide():
+  status = False
+  categories = getCategories()
+  #check if updated URL is correct
+  message = isValidURL(request.form['url'])
+  if(message!=None):
+    return render_template('admin.html', categories = categories, status = status, message=message)
+  status = True
   slide_id = request.form['id']
   s = Slide.query.get(slide_id)
   s.title = request.form['title']
@@ -55,9 +62,7 @@ def updateSlide():
   s.category = request.form['categorie']
   db_session.add(s)
   db_session.commit()
-  status = True
-  categories = getCategories()
-  return render_template('admin.html', categories = categories, status = status, action='updated')
+  return render_template('admin.html', categories = categories, status = status, action='updated', message=message)
 
 
 
