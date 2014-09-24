@@ -2,17 +2,23 @@ from database import db_session
 from models import Administrator, Slide, Category
 from flask import Flask, url_for, render_template, session, redirect, escape, request
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm.exc import NoResultFound
+
 app = Flask(__name__)
 
 
 @app.route('/addCategory', methods=['GET', 'POST'])
 def addCategory():
-  cat = Category(request.form['name'])
-  db_session.add(cat)
-  db_session.commit()
-  status = True
   categories = getCategories()
-  return render_template('admin.html', categories = categories, status = status, action='added')
+  category = Category(request.form['name'])
+  try:
+    Category.query.filter_by(name=request.form['name']).one()
+    status = False
+  except NoResultFound:
+    db_session.add(category)
+    db_session.commit()
+    status = True
+  return render_template('admin.html', status = status, action='added',operation='categories',message='This category already exists in DB!')
 
 
 @app.route('/addSlide', methods=['GET', 'POST'])
