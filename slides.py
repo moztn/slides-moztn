@@ -1,34 +1,45 @@
 from database import db_session
 from models import Administrator, Slide, Category
 from flask import Flask, url_for, render_template, session, redirect, escape, request
+from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm.exc import NoResultFound
+
 app = Flask(__name__)
 
 
 @app.route('/addCategory', methods=['GET', 'POST'])
 def addCategory():
-  cat = Category(request.form['name'])
-  db_session.add(cat)
-  db_session.commit()
-  status = True
   categories = getCategories()
-  return render_template('admin.html', categories = categories, status = status, action='added')
+  category = Category(request.form['name'])
+  try:
+    Category.query.filter_by(name=request.form['name']).one()
+    status = False
+  except NoResultFound:
+    db_session.add(category)
+    db_session.commit()
+    status = True
+  return render_template('admin.html', status = status, action='added',operation='categories',message='This category already exists in DB!')
+
 
 @app.route('/addSlide', methods=['GET', 'POST'])
 def addSlide():
-
-  status = 1
-  categories = getCategories()
-  message = isValidURL(request.form['url'])
-  if(message != None):
-    return render_template('admin.html', categories = categories, status = status, message = message)
-  screenshot = None
-  s = Slide(request.form['title'], request.form['url'], request.form['description'], request.form['categorie'], screenshot)
-  db_session.add(s)
-  db_session.commit()
-
-  status = 0
-  return render_template('admin.html', categories = categories, status = status, action='added')
-
+  try:
+    status = 1
+    categories = getCategories()
+    message = isValidURL(request.form['url'])
+    if(message != None):
+      return render_template('admin.html', categories = categories, status = status, message = message)
+    screenshot = None
+    s = Slide(request.form['title'], request.form['url'], request.form['description'], request.form['categorie'], screenshot)
+    db_session.add(s)
+    db_session.commit()
+    status = 0
+    return render_template('admin.html', categories = categories, status = status, action='added')
+  except IntegrityError as e:
+    db_session.rollback()
+    return render_template('admin.html', categories = categories, status = status, message ='This slide already exists')
+    
+    
 @app.route('/deleteslide', methods=['GET', 'POST'])
 def deleteSlide():
   slide_id = request.form['id']
