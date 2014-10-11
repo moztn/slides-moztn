@@ -14,11 +14,13 @@ pip and virtualenv need to be installed on your machine.
      source venv/bin/activate
    </pre>
 
+
   2-Cloning the project
    <pre>
      cd venv
      git clone https://github.com/moztn/slides-moztn.git
    </pre>
+
  
   3-Installing dependencies:
    <pre>
@@ -26,11 +28,13 @@ pip and virtualenv need to be installed on your machine.
      pip install -r requirements.txt
    </pre>
 
+
   4-Configuring the database:
    <pre>
      $ cd slides-moztn
      $ python first_run.py
    </pre>
+
 
   5-Running the App:
    <pre>
