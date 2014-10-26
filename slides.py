@@ -1,116 +1,186 @@
-from database import db_session
-from models import Administrator, Slide, Category
-from flask import Flask, url_for, render_template, session, redirect, escape, request
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
+from flask import (
+    Flask, url_for, render_template, session, redirect, escape, request,
+    flash, redirect, current_app
+)
+
+from database import db_session
+from models import AdministratorModel, SlideModel, CategoryModel
+from controllers import category_controller, slide_controller
+
 
 app = Flask(__name__)
 
 
 @app.route('/addCategory', methods=['GET', 'POST'])
-def addCategory():
-  categories = getCategories()
-  category = Category(request.form['name'])
-  try:
-    Category.query.filter_by(name=request.form['name']).one()
-    status = False
-  except NoResultFound:
-    db_session.add(category)
-    db_session.commit()
+def add_category():
+    # categories = category_controller.list()
+    # category = CategoryModel(request.form['name'])
+    category_controller.create(
+        name=request.form['name']
+    )
+
     status = True
-  return render_template('admin.html', status = status, action='added',operation='categories',message='This category already exists in DB!')
+    return render_template(
+        'admin.html',
+        status=status,
+        action='added',
+        operation='categories',
+        categories=category_controller.list(),
+        message='This category already exists in DB!'
+    )
 
 
 @app.route('/addSlide', methods=['GET', 'POST'])
-def addSlide():
-  try:
-    status = 1
-    categories = getCategories()
+def add_slide():
+    current_app.logger.debug("debug aaddSlide")
     message = isValidURL(request.form['url'])
-    if(message != None):
-      return render_template('admin.html', categories = categories, status = status, message = message)
-    screenshot = None
-    s = Slide(request.form['title'], request.form['url'], request.form['description'], request.form['categorie'], screenshot)
-    db_session.add(s)
-    db_session.commit()
-    status = 0
-    return render_template('admin.html', categories = categories, status = status, action='added')
-  except IntegrityError as e:
-    db_session.rollback()
-    return render_template('admin.html', categories = categories, status = status, message ='This slide already exists')
+    if message is not None:
+        return render_template(
+            'admin.html',
+            categories=category_controller.list(),
+            status=True,
+            message=message
+        )
+
+    # Takes a default value in case screenshot not specified.
+    screenshot = request.form.get("screenshot", "img/Pres-Mozilla.png")
+    slide_controller.create(
+        title=request.form['title'],
+        url=request.form['url'],
+        description=request.form['description'],
+        category=request.form['categorie'],
+        screenshot=screenshot,
+    )
+    redirect(url_for("admin"))
+
+    return render_template(
+        'admin.html',
+        categories=category_controller.list(),
+        status=False,
+        action='added'
+    )
+    # except IntegrityError as e:
+    #     print("="*100)
+    #     print("inter")
+    #     db_session.rollback()
+    #     raise
+    # else:
+    #     raise Exception("NOt i err")
+    #     return render_template(
+    #         'admin.html',
+    #         categories=category_controller.list(),
+    #         status=status,
+    #         message='This slide already exists'
+    #     )
     
     
 @app.route('/deleteslide', methods=['GET', 'POST'])
-def deleteSlide():
-  slide_id = request.form['id']
-  s = Slide.query.get(slide_id)
-  db_session.delete(s)
-  db_session.commit()
-  status = True
-  categories = getCategories()
-  return render_template('admin.html', categories = categories, status = status, action='deleted')
+def delete_slide():
+    """
+    Deletes a slide.
+    """
+    slide_controller.delete(request.form['id'])
+
+    return render_template(
+        'admin.html',
+        categories=category_controller.list(),
+        status=True,
+        action='deleted'
+    )
 
 
 @app.route('/updateslide', methods=['GET', 'POST'])
-def updateSlide():
-  slide_id = request.form['id']
-  s = Slide.query.get(slide_id)
-  s.title = request.form['title']
-  s.description = request.form['description']
-  s.url = request.form['url']
-  s.category = request.form['categorie']
-  db_session.add(s)
-  db_session.commit()
-  status = True
-  categories = getCategories()
-  return render_template('admin.html', categories = categories, status = status, action='updated')
+def update_slide():
+    """
+    Updates a slide.
+    """
 
-
+    slide_id = request.form['id']
+    s = SlideModel.query.get(slide_id)
+    s.title = request.form['title']
+    s.description = request.form['description']
+    s.url = request.form['url']
+    s.category = request.form['categorie']
+    db_session.add(s)
+    db_session.commit()
+    status = True
+    categories = getCategories()
+    return render_template(
+        'admin.html',
+        categories=categories,
+        status=status,
+        action='updated'
+    )
 
 # retrives the list of categories from the database
-def getCategories():
-  return Category.query.all()
+# def getCategories():
+#   return CategoryMode.query.all()
 
 # retrives slides for a given category
 @app.template_filter('getSlides')
-def getSlides(category):
-  return Slide.query.filter(Slide.category == category.id)
+def get_slides_by_cotegory(category):
+    """
+    """
+    return slide_controller.search(category=category.id)
 
-def isAdmin(email):
-  # if there is no result retrived from the administrator's table then
-  # the mail is not administrator
-  return (len(Administrator.query.filter(Administrator.email == email)) != 0)
+# def isAdmin(email):
+#   # if there is no result retrived from the administrator's table then
+#   # the mail is not administrator
+#   return (len(AdministratorModel.query.filter(AdministratorModel.email == email)) != 0)
 
 def isValidURL(url):
-  
-  # Check if the presentation is hosted on github
-  if(url.lower().startswith('https://github.com/') is not True):
-    return "Your slides must be hosted on https://github.com/"
+    # Check if the presentation is hosted on github
+    if(url.lower().startswith('https://github.com/') is not True):
+        return "Your slides must be hosted on https://github.com/"
 
-  # Check if the branch 'gh-pages' exists
-  import requests
-  res = requests.get(url+'/tree/gh-pages')
+    # Check if the branch 'gh-pages' exists
+    import requests
+    res = requests.get(url+'/tree/gh-pages')
   
-  if(not res.ok):
-    return "You have to create a 'gh-pages' branch"
+    if(not res.ok):
+        return "You have to create a 'gh-pages' branch"
 
-  return None
+    return None
 
 @app.route('/')
 def index():
-  categories = getCategories()
-  return render_template('index.html', categories = categories)
+    """
+    Returns the index view.
+    """
+    return render_template(
+        'index.html',
+        categories=category_controller.list()
+    )
 
 @app.route('/admin')
 def admin():
-  categories = getCategories()
-  status = -1
-  return render_template('admin.html', categories = categories, status = status)
+    current_app.logger.debug("debug admin")
+    # categories = getCategories()
+    status = -1
+    return render_template(
+    'admin.html',
+    categories=category_controller.list(),
+    status=status
+)
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html')
+
+@app.before_request
+def log_entry():
+    context = {
+        'url': request.path,
+        'method': request.method,
+        'ip': request.environ.get("REMOTE_ADDR")
+    }
+    app.logger.debug("Handling %(method)s request from %(ip)s for %(url)s", context)
 
 @app.teardown_appcontext
 def shutdown_session(exeception=None):
-  db_session.remove()
+    db_session.remove()
 
 if __name__ == '__main__':
-  app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0', debug=True, use_debugger=True)
