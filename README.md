@@ -29,17 +29,13 @@ pip and virtualenv need to be installed on your machine.
    </pre>
 
 
-  4-Configuring the database:
-   <pre>
-     $ cd slides-moztn
-     $ python first_run.py
-   </pre>
-
-
-  5-Running the App:
+  4-Running the App:
    <pre>
      $ python slides.py
    </pre>
+
+   5- Init data base :
+   Open `http://localhost:5000/init`
 
   A webserver will be started so that you can access the web app via http://http://127.0.0.1:5000/
 

@@ -13,6 +13,13 @@ from controllers import category_controller, slide_controller
 app = Flask(__name__)
 
 
+
+@app.route('/init')
+def first_run():
+  import first_run
+  first_run.init()
+  return redirect(url_for("index"))
+
 @app.route('/addCategory', methods=['GET', 'POST'])
 def add_category():
     # categories = category_controller.list()

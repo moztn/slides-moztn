@@ -5,6 +5,9 @@ from controllers import category_controller, slide_controller
 
 
 if __name__ == '__main__':
+  print("Please open http://localhost:5000/init on your browser")
+
+def init():
     if not os.path.exists('db'):
         os.makedirs('db')
     init_db()
@@ -16,7 +19,7 @@ if __name__ == '__main__':
         title="test title",
         screenshot="img/Pres-Mozilla.png",
         description="test desc",
-        url="http://moztn.github.io/firefoxOSAppDay-Slides",
+        url="https://github.com/moztn/firefoxOSAppDay-Slides",
         category=1
     )
     print("Fixtures created successfully")
