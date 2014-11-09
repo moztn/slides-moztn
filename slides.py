@@ -113,17 +113,13 @@ def update_slide():
     db_session.add(s)
     db_session.commit()
     status = True
-    categories = getCategories()
+
     return render_template(
         'admin.html',
-        categories=categories,
+        categories=category_controller.list(),
         status=status,
         action='updated'
     )
-
-# retrives the list of categories from the database
-# def getCategories():
-#   return CategoryMode.query.all()
 
 # retrives slides for a given category
 @app.template_filter('getSlides')
@@ -164,7 +160,6 @@ def index():
 @app.route('/admin')
 def admin():
     current_app.logger.debug("debug admin")
-    # categories = getCategories()
     status = -1
     return render_template(
     'admin.html',
