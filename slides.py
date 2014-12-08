@@ -47,7 +47,7 @@ def add_slide():
         return render_template(
             'admin.html',
             categories=category_controller.list(),
-            status=True,
+            status=False,
             message=message
         )
 
@@ -65,7 +65,7 @@ def add_slide():
     return render_template(
         'admin.html',
         categories=category_controller.list(),
-        status=False,
+        status=True,
         action='added'
     )
     # except IntegrityError as e:
