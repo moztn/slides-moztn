@@ -2,7 +2,7 @@
 {% block body %}
 {% if categories|length > 0 %}
   {% for category in categories %}
-    <section class="billboard products">
+    <section id="{{ category.name }}" class="billboard products">
       <h1>{{ category.name }}</h1>
         <ul>
           {% for slide in (category|getSlides) %}
