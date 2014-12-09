@@ -103,7 +103,15 @@ def update_slide():
     """
     Updates a slide.
     """
-
+    message = isValidURL(request.form['url'])
+    if message is not None:
+        return render_template(
+            'admin.html',
+            categories=category_controller.list(),
+            status=False,
+            message=message
+        )
+        
     slide_id = request.form['id']
     s = SlideModel.query.get(slide_id)
     s.title = request.form['title']
