@@ -141,15 +141,19 @@
                     <h2>Our dedication to driving the Web forward and keeping it open to everyone extends through everything we do.</h2>
                 </hgroup>                 
                 <nav id="products-nav" class="menu-bar billboard">
+                    
                     <ul>
-                        <li><a href="#products">Mozilla</a></li>
-                        <li><a href="#firefoxos">Firefox OS</a></li>
-                        <li><a href="#tools">Autres</a></li>
-                        <li><a href="#platforms">Comming Soon</a></li>
+                        {% if categories|length > 0 %}
+                            {% for category in categories %}
+                                <li><a href="#{{ category.name }}">{{ category.name }}</a></li>
+                            {% endfor %}
+                            {% else %}
+                                <li>No categories were found</li>
+                        {% endif %}
                     </ul>
                     
                 </nav>
-{% block body %} {% endblock %}
+        {% block body %} {% endblock %}
             </div>
             <!-- close #wrapper -->
             <footer id="colophon" class="">
