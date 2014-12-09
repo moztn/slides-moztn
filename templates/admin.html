@@ -7,18 +7,18 @@
 
   </script>
 {% if status == True %}
-    {% if operation== 'categories' %}
+    {% if operation == 'categories' %}
         <div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert">×</button>
             <h4>
-                <span>Category {{action}} succefully</span>
+                <span>Category {{ action }} succefully</span>
             </h4>
         </div>
     {% else %}
         <div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert">×</button>
             <h4>
-                <span>Slide {{action}} succefully</span>
+                <span>Slide {{ action }} succefully</span>
             </h4>
         </div>
     {% endif %}
@@ -82,7 +82,7 @@
 
 
 <div class="modal hide fade" id="delteslide" tabindex="-1" role="dialog" aria-labelledby="delteslide">
-    <form method="POST" action="{{ url_for('deleteSlide') }}">
+    <form method="POST" action="{{ url_for('delete_slide') }}">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -110,7 +110,7 @@
 
 
 <div class="modal hide fade" id="updateslide" role="dialog" aria-labelledby="labelupdateslide">
-    <form method="POST" action="{{ url_for('updateSlide') }}">
+    <form method="POST" action="{{ url_for('update_slide') }}">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -156,7 +156,7 @@
 
 
 <div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
-    <form method="POST" action="{{ url_for('addSlide') }}" >
+    <form method="POST" action="{{ url_for('add_slide') }}" >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -201,7 +201,7 @@
 
 
 <div class="modal hide fade" id="addcategory" tabindex="-1" role="dialog" aria-labelledby="addcategory">
-    <form method="POST" action="{{ url_for('addCategory') }}" >
+    <form method="POST" action="{{ url_for('add_category') }}" >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

@@ -1,20 +1,24 @@
 {% extends "layout.html" %}
 {% block body %}
-{% for c in categories %}
-  <section class="billboard products">
-    <h1>{{ c.name }}</h1>
-      <ul>
-        {% for s in (c|getSlides) %}
-        <li>
-          <img="{{ s.screenshot }}" alt="{{ s.title }}">
-          <div style="text-align:center">
-            <button class="demo button" onClick="target='_blank';window.open('{{ s.getGithubDemoUrl() }}')"><span>Online</span></button>
-            <button class="demo button" onClick="window.location.href='{{ s.getGithubDownloadUrl() }}'"><span>Download</span></button>
-          </div>
-          <p>{{ s.description }}</p>
-        </li>  
-        {% endfor %} 
-    </ul>           
-  </section>
-{% endfor %}
+{% if categories|length > 0 %}
+  {% for category in categories %}
+    <section class="billboard products">
+      <h1>{{ category.name }}</h1>
+        <ul>
+          {% for slide in (category|getSlides) %}
+          <li>
+            <img src={{ url_for('static', filename=slide.screenshot)}} alt="{{ slide.title }}">
+            <div style="text-align:center">
+              <button class="demo button" onClick="target='_blank';window.open('{{ slide.github_demo_url }}')"><span>Online</span></button>
+              <button class="download button" onClick="window.location.href='{{ slide.github_download_url }}'"><span>Download</span></button>
+            </div>
+            <p>{{ slide.description }}</p>
+          </li>  
+          {% endfor %}
+      </ul>         
+    </section>
+  {% endfor %}
+{% else %}
+    <h1>No categories were found</h1>
+{% endif %}
 {% endblock %}
