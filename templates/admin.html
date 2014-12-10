@@ -233,11 +233,18 @@
         var title = $(columns[1]).text();
         var description = $(columns[2]).text();
         var url = $(columns[3]).text();
+        var categorie = $(columns[4]).text();
         $('.title-container').html(title);
         $('input[name=id]').val(id);
         $('input[name=title]').val(title);
         $('textarea[name=description]').val(description);
         $('input[name=url]').val(url);
+        $('select[name=categorie]').find('option').each(function() {
+		if( $(this).text().trim() === categorie){
+			$(this).attr('selected', true);
+		}
+    	});
+
     });
 </script>
 {% endblock %}
