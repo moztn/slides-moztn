@@ -239,7 +239,11 @@
         $('input[name=title]').val(title);
         $('textarea[name=description]').val(description);
         $('input[name=url]').val(url);
-        $('select[name="categorie"]').find('option:contains("'+categorie+'")').attr("selected",true);
+        $('select[name=categorie]').find('option').each(function() {
+		if( $(this).text().trim() === categorie){
+			$(this).attr('selected', true);
+		}
+    	});
 
     });
 </script>
