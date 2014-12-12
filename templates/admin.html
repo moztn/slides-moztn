@@ -246,5 +246,8 @@
     	});
 
     });
+	$('#myModal').on('show.bs.modal', function(){
+                 $(this).find('form')[0].reset();
+        });
 </script>
 {% endblock %}
