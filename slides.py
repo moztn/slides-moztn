@@ -102,7 +102,34 @@ def delete_category():
     """
     Deletes a category.
     """
-    category_controller.delete(request.form['id'])
+    category_id = request.form['id']
+    c = CategoryModel.query.get(category_id)
+
+    uc = CategoryModel.query.filter(CategoryModel.name=="Uncategorised").first()
+    if uc is None:
+        category_controller.create(
+        name="Uncategorised"
+    )
+
+    if c.name == "Uncategorised":
+        return render_template(
+        'admin.html',
+        categories=category_controller.list(),
+        status=False,
+        action='deleted',
+        operation='categories',
+        message="You can't delete this category"
+        )
+
+
+    slides = get_slides_by_cotegory(c)
+    for s in slides:
+        s.category = uc.id
+        db_session.add(s)
+    category_controller.delete(category_id)
+    
+    db_session.commit()
+
 
     return render_template(
         'admin.html',
