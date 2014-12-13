@@ -7,7 +7,11 @@
         <ul>
           {% for slide in (category|getSlides) %}
           <li>
+	    {% if slide.screenshot == "img/badge-reserved.jpg" %}
             <img src={{ url_for('static', filename=slide.screenshot)}} alt="{{ slide.title }}">
+	    {% else %}
+            <img src={{slide.screenshot}} alt="{{ slide.title }}">
+            {% endif %}
             <div style="text-align:center">
               <button class="demo button" onClick="target='_blank';window.open('{{ slide.github_demo_url }}')"><span>Online</span></button>
               <button class="download button" onClick="window.location.href='{{ slide.github_download_url }}'"><span>Download</span></button>

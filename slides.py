@@ -52,7 +52,10 @@ def add_slide():
         )
 
     # Takes a default value in case screenshot not specified.
-    screenshot = request.form.get("screenshot", "img/Pres-Mozilla.png")
+    if not request.form['screenshot']:
+      screenshot = "img/badge-reserved.jpg"
+    else:
+      screenshot = request.form['screenshot']
     slide_controller.create(
         title=request.form['title'],
         url=request.form['url'],
@@ -154,13 +157,17 @@ def update_slide():
             status=False,
             message=message
         )
-
+    if not request.form['screenshot']:
+      screenshot = "img/badge-reserved.jpg"
+    else:
+      screenshot = request.form['screenshot']
     slide_id = request.form['id']
     s = SlideModel.query.get(slide_id)
     s.title = request.form['title']
     s.description = request.form['description']
     s.url = request.form['url']
     s.category = request.form['categorie']
+    s.screenshot = screenshot
     db_session.add(s)
     db_session.commit()
     status = True
