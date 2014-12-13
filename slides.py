@@ -52,7 +52,10 @@ def add_slide():
         )
 
     # Takes a default value in case screenshot not specified.
-    screenshot = request.form.get("screenshot", "img/Pres-Mozilla.png")
+    if not request.form['screenshot']:
+      screenshot = request.form.get("screenshot", "img/Pres-Mozilla.png")
+    else:
+      screenshot = request.form['screenshot']
     slide_controller.create(
         title=request.form['title'],
         url=request.form['url'],

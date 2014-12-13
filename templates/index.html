@@ -5,10 +5,14 @@
     <section id="{{ category.name }}" class="billboard products">
       <h1>{{ category.name }}</h1>
         <ul>
-          {% for slide in (category|getSlides) %}
+          {% for slide in (category|getSlides)%}
           <li>
+	    {% if slide.screenshot.find("Pres-Mozilla.png") == -1 %}
+            <img src={{slide.screenshot}} alt="{{ slide.title }}">
+	    {% else %}
             <img src={{ url_for('static', filename=slide.screenshot)}} alt="{{ slide.title }}">
-            <div style="text-align:center">
+            {% endif %}
+	    <div style="text-align:center">
               <button class="demo button" onClick="target='_blank';window.open('{{ slide.github_demo_url }}')"><span>Online</span></button>
               <button class="download button" onClick="window.location.href='{{ slide.github_download_url }}'"><span>Download</span></button>
             </div>
