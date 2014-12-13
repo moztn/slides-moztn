@@ -32,8 +32,8 @@
 }
 .products li {
     float: left;
-    width: 300px;
-    margin: 0 10px;
+    width: auto;
+    margin: 0 0px;
     font-family: 'Open Sans', sans-serif;
     padding: 5px 0;
     font-size: 12px;
