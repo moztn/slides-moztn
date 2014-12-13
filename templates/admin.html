@@ -343,6 +343,17 @@
     	});
 
     });
+    $('#categories-list [data-toggle-dialog]').off('click').on('click', function(event){
+        e = $(this);
+        var columns = e.closest('tr').find('td');
+        var id = $(columns[0]).text();
+        var title = $(columns[1]).text();
+        
+        $('.title-container').html(title);
+        $('input[name=id]').val(id);
+        $('input[name=title]').val(title);
+
+    });
 	$('#myModal').on('show.bs.modal', function(){
                  $(this).find('form')[0].reset();
         });
