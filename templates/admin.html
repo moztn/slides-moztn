@@ -66,6 +66,7 @@
                                     <th>Title</th>
                                     <th>Description</th>
                                     <th>URL</th>
+				    <th>Screenshot</th>
                                     <th>Category</th>
                                     <th>Action</th>
                                 </tr>
@@ -78,6 +79,7 @@
                                             <td>{{ s.title }}</td>
                                             <td>{{ s.description }}</td>
                                             <td><a href="{{ s.url }}">{{ s.url }}</a></td>
+					    <td><a href="{{ s.screenshot }}">{{ s.screenshot }}</td>
                                             <td>{{ c.name}}</td>
                                             <td style="width:80px;">
                                                 <button data-toggle-dialog="#" data-toggle="modal" data-target="#updateslide" title="Update Slide" class="btn btn-small btn-warning" type="button"><i class="icon-white icon-edit"></i></button>
@@ -193,6 +195,10 @@
                             <td><label>Github URL</label></td>
                             <td><input type="url" name="url" required /></td>
                         </tr>
+			<tr>
+                            <td><label>Screenshot URL</label></td>
+                            <td><input type="url" name="screenshot"></textarea></td>
+                        </tr>
                         <tr>
                             <td><label>Description</label></td>
                             <td><textarea name="description" required></textarea></td>
@@ -268,6 +274,10 @@
                             <td><label>Github URL</label></td>
                             <td><input type="url" name="url" required /></td>
                         </tr>
+			<tr>
+                            <td><label>Screenshot URL</label></td>
+                            <td><input type="url" name="screenshot"></textarea></td>
+                        </tr>
                         <tr>
                             <td><label>Description</label></td>
                             <td><textarea name="description" required></textarea></td>
@@ -330,12 +340,16 @@
         var title = $(columns[1]).text();
         var description = $(columns[2]).text();
         var url = $(columns[3]).text();
-        var categorie = $(columns[4]).text();
+        var screenshot = $(columns[4]).text();
+	if(screenshot==="img/badge-reserved.jpg")
+          screenshot="";
+        var categorie = $(columns[5]).text();
         $('.title-container').html(title);
         $('input[name=id]').val(id);
         $('input[name=title]').val(title);
         $('textarea[name=description]').val(description);
         $('input[name=url]').val(url);
+	$('input[name=screenshot]').val(screenshot);
         $('select[name=categorie]').find('option').each(function() {
 		if( $(this).text().trim() === categorie){
 			$(this).attr('selected', true);
