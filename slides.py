@@ -97,6 +97,21 @@ def delete_slide():
         action='deleted'
     )
 
+@app.route('/deletecategory', methods=['GET', 'POST'])
+def delete_category():
+    """
+    Deletes a category.
+    """
+    category_controller.delete(request.form['id'])
+
+    return render_template(
+        'admin.html',
+        categories=category_controller.list(),
+        status=True,
+        action='deleted',
+        operation='categories'
+    )
+
 
 @app.route('/updateslide', methods=['GET', 'POST'])
 def update_slide():
@@ -119,6 +134,28 @@ def update_slide():
         categories=category_controller.list(),
         status=status,
         action='updated'
+    )
+
+@app.route('/updatecategory', methods=['GET', 'POST'])
+def update_category():
+    """
+    Updates a category.
+    """
+
+    category_id = request.form['id']
+    c = CategoryModel.query.get(category_id)
+    c.name = request.form['title']
+    
+    db_session.add(c)
+    db_session.commit()
+    status = True
+
+    return render_template(
+        'admin.html',
+        categories=category_controller.list(),
+        status=status,
+        action='updated',
+        operation='categories'
     )
 
 # retrives slides for a given category

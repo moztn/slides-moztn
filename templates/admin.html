@@ -46,40 +46,79 @@
             <i class="icon-plus-sign"></i> Add slide
         </button>
     </div>
-    <table id="slides-list" class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>URL</th>
-                <th>Category</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for c in categories %}
-                {% for s in (c|getSlides) %}
-                    <tr>
-                        <td>{{ s.id }}</td>
-                        <td>{{ s.title }}</td>
-                        <td>{{ s.description }}</td>
-                        <td><a href="{{ s.url }}">{{ s.url }}</a></td>
-                        <td>{{ c.name}}</td>
-                        <td style="width:80px;">
-                            <button data-toggle-dialog="#" data-toggle="modal" data-target="#updateslide" title="Update Slide" class="btn btn-small btn-warning" type="button"><i class="icon-white icon-edit"></i></button>
-                            <button data-toggle-dialog="#" data-toggle="modal" data-target="#delteslide" title="Delete Slide" class="btn btn-danger btn-small" type="button"><i class="icon-white icon-trash"></i></button>
-                        </td>
-                    </tr>
-                {% endfor %}
-            {% endfor %}
-        </tbody>
-    </table>
+    <br/><br/><br/>
+    <div class="tabbable" id="tabs-842557">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#panel-705054" data-toggle="tab">Slides</a>
+                    </li>
+                    <li>
+                        <a href="#panel-469452" data-toggle="tab">Categories</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="panel-705054">
+                        
+                        <table id="slides-list" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>URL</th>
+                                    <th>Category</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for c in categories %}
+                                    {% for s in (c|getSlides) %}
+                                        <tr>
+                                            <td>{{ s.id }}</td>
+                                            <td>{{ s.title }}</td>
+                                            <td>{{ s.description }}</td>
+                                            <td><a href="{{ s.url }}">{{ s.url }}</a></td>
+                                            <td>{{ c.name}}</td>
+                                            <td style="width:80px;">
+                                                <button data-toggle-dialog="#" data-toggle="modal" data-target="#updateslide" title="Update Slide" class="btn btn-small btn-warning" type="button"><i class="icon-white icon-edit"></i></button>
+                                                <button data-toggle-dialog="#" data-toggle="modal" data-target="#delteslide" title="Delete Slide" class="btn btn-danger btn-small" type="button"><i class="icon-white icon-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                    <div class="tab-pane" id="panel-469452">
+                        <table id="slides-list" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Title</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for c in categories %}
+                                    
+                                        <tr>
+                                            <td>{{ c.id }}</td>
+                                            <td>{{ c.name }}</td>                       
+                                            <td style="width:80px;">
+                                                <button data-toggle-dialog="#" data-toggle="modal" data-target="#updatecategory" title="Update Category" class="btn btn-small btn-warning" type="button"><i class="icon-white icon-edit"></i></button>
+                                                <button data-toggle-dialog="#" data-toggle="modal" data-target="#deletecategory" title="Delete Category" class="btn btn-danger btn-small" type="button"><i class="icon-white icon-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+       
 </section>
-
-
-
-
+        
 
 <div class="modal hide fade" id="delteslide" tabindex="-1" role="dialog" aria-labelledby="delteslide">
     <form method="POST" action="{{ url_for('delete_slide') }}">
@@ -107,7 +146,34 @@
 </div><!-- /.modal -->
 
 
+<!-- Delete Category Form -->
 
+<div class="modal hide fade" id="deletecategory" tabindex="-1" role="dialog" aria-labelledby="deletecategory">
+    <form method="POST" action="{{ url_for('delete_category') }}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="deletecategory">Delete a Category</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete : 
+                        <strong> 
+                            <span class="title-container"></span>
+                        </strong>
+                    </p>
+                    <input type="hidden" name="id" />       
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" value="Delete" class="btn btn-danger"/>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </form>
+</div><!-- /.modal -->
+
+<!-- End Delete Category Form -->
 
 <div class="modal hide fade" id="updateslide" role="dialog" aria-labelledby="labelupdateslide">
     <form method="POST" action="{{ url_for('update_slide') }}">
@@ -154,6 +220,35 @@
 </div><!-- /.modal -->
 
 
+<!-- Update Category Form -->
+
+<div class="modal hide fade" id="updatecategory" role="dialog" aria-labelledby="labelupdateslide">
+    <form method="POST" action="{{ url_for('update_category') }}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="labelupdateslide">Update a Category</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="span5">
+                        <tr>
+                            <td><label>Name</label></td>
+                            <td><input type="text" name="title" required /></td>
+                        </tr>                        
+                        <input type="hidden" name="id">
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" value="submit" class="btn btn-primary"/>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </form>
+</div>
+
+<!-- End Update Category -->
 
 <div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
     <form method="POST" action="{{ url_for('add_slide') }}" >
