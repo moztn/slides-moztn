@@ -17,7 +17,7 @@ def init():
     print("Creating a test slide..")
     slide_controller.create(
         title="test title",
-        screenshot="img/Pres-Mozilla.png",
+        screenshot="img/badge-reserved.jpg",
         description="test desc",
         url="https://github.com/moztn/firefoxOSAppDay-Slides",
         category=1
