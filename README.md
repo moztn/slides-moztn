@@ -42,6 +42,6 @@ pip and virtualenv need to be installed on your machine.
 
   A webserver will be started so that you can access the web app via http://127.0.0.1:5000/
 
-  You can check our page "GitHub Good Practices" (in french) via http://wiki.mozilla-tunisia.org/Github_good_practices 
+  If you want to contribute an be part of this project, please check first our page "GitHub Good Practices" (in french) via http://wiki.mozilla-tunisia.org/Github_good_practices 
 
 
