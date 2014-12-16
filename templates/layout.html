@@ -147,7 +147,7 @@
                     <ul>
                         {% if categories|length > 0 %}
                             {% for category in categories %}
-                                <li><a href="#{{ category.name }}">{{ category.name }}</a></li>
+                                <li><a href="../#{{ category.name }}">{{ category.name }}</a></li>
                             {% endfor %}
                             {% else %}
                                 <li>No categories were found</li>
