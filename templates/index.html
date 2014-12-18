@@ -2,7 +2,7 @@
 {% block body %}
 {% if categories|length > 0 %}
   {% for category in categories %}
-
+    {% if category|getSlides|first %}
     <section id="{{ category.name }}" class="billboard products">
 
       <div class="accordion" id="accordion-324663">
@@ -47,6 +47,7 @@
         </div>
       </div> 
     </section>
+    {% endif %}
   {% endfor %}
 {% else %}
     <h1>No categories were found</h1>
