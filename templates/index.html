@@ -2,30 +2,57 @@
 {% block body %}
 {% if categories|length > 0 %}
   {% for category in categories %}
+
     <section id="{{ category.name }}" class="billboard products">
-      <h1>{{ category.name }}</h1>
-        <ul>
-          {% for slide in (category|getSlides) %}
-          <li>
-	      {% if slide.screenshot == "img/badge-reserved.jpg" %}
-                <div id="reserved">
-                  <img src={{ url_for('static', filename=slide.screenshot)}} alt="{{ slide.title }}">
-                  <p>Presentation&nbsp;with default&nbsp;screenshot.</p>
-                </div>
-	      {% else %}
-                <img src={{slide.screenshot}} alt="{{ slide.title }}">
-              {% endif %}
-            <div style="text-align:center">
-              <button class="demo button" onClick="target='_blank';window.open('{{ slide.github_demo_url }}')"><span>Online</span></button>
-              <button class="download button" onClick="window.location.href='{{ slide.github_download_url }}'"><span>Download</span></button>
+
+      <div class="accordion" id="accordion-324663">
+        <div class="accordion-group">
+          <div class="accordion-heading clearfix">
+             <a class="accordion-toggle" data-toggle="collapse" href="#category-{{ category.id }}">
+              <h1>{{ category.name }} </h1>
+            </a>
+          </div>
+          {% if categories[0].id == category.id %}
+          <div id="category-{{ category.id }}" class="accordion-body collapse in">
+            {% else %}
+              <div id="category-{{ category.id }}" class="accordion-body collapse">
+          {% endif %}
+            <div class="accordion-inner">
+              <ul>
+                {% for slide in (category|getSlides) %}
+                  <li>
+                    {% if slide.screenshot == "img/badge-reserved.jpg" %}
+                      <div id="reserved">
+                        <img src={{ url_for('static', filename=slide.screenshot)}} alt="{{ slide.title }}">
+                        <p>Presentation&nbsp;with default&nbsp;screenshot.</p>
+                      </div>
+                    {% else %}
+                      <img src={{slide.screenshot}} alt="{{ slide.title }}">
+                    {% endif %}
+                    <div style="text-align:center">
+                      <button class="demo button" onClick="target='_blank';window.open('{{ slide.github_demo_url }}')">
+                        <span>Online</span>
+                      </button>
+                      <button class="download button" onClick="window.location.href='{{ slide.github_download_url }}'">
+                        <span>Download</span>
+                      </button>
+                    </div>
+                    <p>{{ slide.description }}</p>
+                  </li>  
+                {% endfor %}
+              </ul>         
             </div>
-            <p>{{ slide.description }}</p>
-          </li>  
-          {% endfor %}
-      </ul>         
+          </div>
+        </div>
+      </div> 
     </section>
   {% endfor %}
 {% else %}
     <h1>No categories were found</h1>
 {% endif %}
 {% endblock %}
+
+
+
+     
+   
