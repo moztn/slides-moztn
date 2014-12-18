@@ -28,7 +28,7 @@
 }
 .products ul {
     padding: 0;
-    margin: 0;
+    margin: 0 0 0 20px;
 }
 .products li {
     float: left;
@@ -63,9 +63,10 @@
     -moz-box-shadow: 0 0 16px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5);
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5);
     margin-bottom: 10px;
-    width: 100%;
+    width: 280px;
     max-width: 300px;
-    height: auto;
+    height: 160px;
+    margin-right: 22px;
 }
 .products #reserved {
     position: relative;
