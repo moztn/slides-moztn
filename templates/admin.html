@@ -381,4 +381,9 @@
         $('#categories-list').dataTable();
     });
     </script>
+    {% if operation == 'categories' %}
+        <script type="text/javascript">
+            $('#tabs-842557 a[href="#panel-469452"]').tab('show');
+        </script>
+    {% endif %}
 {% endblock %}
