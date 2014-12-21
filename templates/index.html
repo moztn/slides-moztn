@@ -1,8 +1,10 @@
 {% extends "layout.html" %}
 {% block body %}
 {% if categories|length > 0 %}
+{% set i=0 %}
   {% for category in categories %}
-
+    {% if category|getSlides|first %}
+    {% set i= i +1 %}
     <section id="{{ category.name }}" class="billboard products">
 
       <div class="accordion" id="accordion-324663">
@@ -13,7 +15,7 @@
               <h1>{{ category.name }} </h1>
             </a>
           </div>
-          {% if categories[0].id == category.id %}
+          {% if i == 1 %}
           <div id="category-{{ category.id }}" class="accordion-body collapse in">
             {% else %}
               <div id="category-{{ category.id }}" class="accordion-body collapse">
@@ -47,9 +49,13 @@
         </div>
       </div> 
     </section>
+    
+    {% endif %}
   {% endfor %}
+  
 {% else %}
     <h1>No categories were found</h1>
+
 {% endif %}
 {% endblock %}
 

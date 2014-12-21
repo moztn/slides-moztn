@@ -1,5 +1,4 @@
 Flask
 Flask-SQLAlchemy
-sqlobject
 requests
 git+https://github.com/rednaks/flask-browserid

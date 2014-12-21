@@ -10,20 +10,19 @@ from models import AdministratorModel, SlideModel, CategoryModel
 from controllers import category_controller, slide_controller
 from flask.ext.login import LoginManager
 from flask.ext.browserid import BrowserID
-from sqlobject import SQLObjectNotFound
 
 def get_user_by_id(aId):
   try:
-    m = AdministratorModel.query.get(int(aId))
-    return m
-  except SQLObjectNotFound:
+    a = AdministratorModel.query.get(int(aId))
+    return a
+  except NoResultFound:
     return None
 
 def get_user(kwargs):
   try:
-    m = AdministratorModel.query.filter_by(email=kwargs['email']).first()
-    return m
-  except SQLObjectNotFound:
+    a = AdministratorModel.query.filter_by(email=kwargs['email']).first()
+    return a
+  except NoResultFound:
     return None
 
 app = Flask(__name__)
@@ -211,8 +210,19 @@ def update_category():
 
     category_id = request.form['id']
     c = CategoryModel.query.get(category_id)
+ 
+    if c.name == "Uncategorised":
+        return render_template(
+        'admin.html',
+        categories=category_controller.list(),
+        status=False,
+        action='updated',
+        operation='categories',
+        message="You can't change the name of this category"
+        )
+
     c.name = request.form['title']
-    
+   
     db_session.add(c)
     db_session.commit()
     status = True
