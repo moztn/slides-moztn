@@ -8,11 +8,34 @@ from flask import (
 from database import db_session
 from models import AdministratorModel, SlideModel, CategoryModel
 from controllers import category_controller, slide_controller
+from flask.ext.login import LoginManager
+from flask.ext.browserid import BrowserID
 
+def get_admin_by_id(aId):
+  try:
+    admin = AdministratorModel.query.get(int(aId))
+    return admin
+  except NoResultFound:
+    return None
+
+def get_admin(kwargs):
+  try:
+    admin = AdministratorModel.query.filter_by(email=kwargs['email']).first()
+    return admin
+  except NoResultFound:
+    return None
 
 app = Flask(__name__)
 
+app.config['SECRET_KEY'] = "deterministic"
 
+login_manager = LoginManager()
+login_manager.user_loader(get_admin_by_id)
+login_manager.init_app(app)
+browser_id = BrowserID()
+browser_id.user_loader(get_admin)
+browser_id.redirect_url = 'admin'
+browser_id.init_app(app)
 
 @app.route('/init')
 def first_run():
