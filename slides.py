@@ -109,10 +109,6 @@ def delete_category():
     c = CategoryModel.query.get(category_id)
 
     uc = CategoryModel.query.filter(CategoryModel.name=="Uncategorised").first()
-    if uc is None:
-        category_controller.create(
-        name="Uncategorised"
-    )
 
     if c.name == "Uncategorised":
         return render_template(
