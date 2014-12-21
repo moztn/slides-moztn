@@ -1,9 +1,9 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from database import Base
 from sqlalchemy.orm import relationship, backref
+from flask.ext.login import UserMixin
 
-
-class AdministratorModel(Base):
+class AdministratorModel(Base,UserMixin):
     __tablename__ = 'administrators'
     id = Column(Integer, primary_key=True)
     email = Column(String(90), unique=True)
