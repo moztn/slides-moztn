@@ -147,7 +147,9 @@
                     <ul>
                         {% if categories|length > 0 %}
                             {% for category in categories %}
-                                <li><a href="{{url_for('index')}}#{{category.name}}">{{ category.name }}</a></li>
+                                {% if category|getSlides|first %}
+                                    <li><a href="{{url_for('index')}}#{{category.name}}">{{ category.name }}</a></li>
+                                {% endif %}
                             {% endfor %}
                             {% else %}
                                 <li>No categories were found</li>

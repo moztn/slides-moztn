@@ -211,8 +211,19 @@ def update_category():
 
     category_id = request.form['id']
     c = CategoryModel.query.get(category_id)
+ 
+    if c.name == "Uncategorised":
+        return render_template(
+        'admin.html',
+        categories=category_controller.list(),
+        status=False,
+        action='updated',
+        operation='categories',
+        message="You can't change the name of this category"
+        )
+
     c.name = request.form['title']
-    
+   
     db_session.add(c)
     db_session.commit()
     status = True
