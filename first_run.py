@@ -14,6 +14,7 @@ def init():
     
     print("Createing the a test category..")
     category_controller.create(name="Test")
+    category_controller.create(name="Uncategorised")
     print("Creating a test slide..")
     slide_controller.create(
         title="test title",
