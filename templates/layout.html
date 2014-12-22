@@ -10,7 +10,7 @@
         <meta property="og:image" content="{{ url_for('static', filename='img/FirefoxOSDesign.png')}}" />
         <meta property="og:site_name" content="Mozilla Tunisia Presentation" />
         <meta property="og:description" content="Dans cette page vous treverez toutes les présentations réalisé par la communauté Mozilla Tunisia" />
-        
+
         <title>Mozilla Tunisia - Slides</title>
 
         <link href="{{ url_for('static', filename='css/tabzilla.css')}}" rel="stylesheet">
@@ -18,7 +18,7 @@
         <!--[if lte IE 8]>
         <script src="//mozorg.cdn.mozilla.net/media/js/libs/html5shiv.js"></script>
         <![endif]-->
-        
+
         <link rel="stylesheet" media="screen,projection,tv" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
         <link rel="stylesheet" media="screen,projection,tv" href="{{ url_for('static', filename='css/bootstrap-responsive.min.css')}}">
 
@@ -26,13 +26,13 @@
         <link rel="stylesheet" media="screen,projection,tv" href="{{ url_for('static', filename='css/products-min.css')}}">
         <link rel="shortcut icon" href="{{ url_for('static', filename='img/Favicon.ico')}}">
 
-        
+
 
         <script id="undefined" src="{{ url_for('static', filename='js/inpage_linkid.js')}}" async="" type="text/javascript"></script>
         <script src="{{ url_for('static', filename='js/ga.js')}}" async="" type="text/javascript"></script>
         <script src="{{ url_for('static', filename='js/site-min.js')}}"></script>
-        
-          
+
+
         <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js')}}"></script>
         <!-- jQuery -->
         <script type="text/javascript" src="{{ url_for('static', filename='js/scrolltotop.js')}}"></script>
@@ -106,12 +106,12 @@
                             </div>
                         </li>
                         <li id="tabzilla-search">
-                            <a href="https://www.mozilla.org/community/directory.html">Annuaire des sites web</a>          
-                            <form title="Search Mozilla sites" role="search" action="http://www.google.com/cse">            
-				<input value="002443141534113389537:ysdmevkkknw" name="cx" type="hidden">            
-				<input value="FORID:0" name="cof" type="hidden">            
-				<label for="q">Rechercher</label>            
-				<input placeholder="Rechercher" id="q" name="q" type="search">          
+                            <a href="https://www.mozilla.org/community/directory.html">Annuaire des sites web</a>
+                            <form title="Search Mozilla sites" role="search" action="http://www.google.com/cse">
+				<input value="002443141534113389537:ysdmevkkknw" name="cx" type="hidden">
+				<input value="FORID:0" name="cof" type="hidden">
+				<label for="q">Rechercher</label>
+				<input placeholder="Rechercher" id="q" name="q" type="search">
 			    </form>
                         </li>
                     </ul>
@@ -134,16 +134,16 @@
                     </nav>
                     <!-- <h2> -->
                         <a href="http://mozilla-tunisia.org">
-                            <img src="{{ url_for('static', filename='img/logo.png')}}" alt="mozilla" style="margin-top: 15px;">
+                            <img src="{{ url_for('static', filename='img/logo.png')}}" class="header-logo" alt="mozilla" />
                         </a>
                     <!-- </h2> -->
                 </header>
                 <hgroup id="main-feature" style="margin-top: -35px;">
                     <h1 class="large">Mozilla Tunisia</h1>
                     <h2>Our dedication to driving the Web forward and keeping it open to everyone extends through everything we do.</h2>
-                </hgroup>                 
+                </hgroup>
                 <nav id="products-nav" class="menu-bar billboard">
-                    
+
                     <ul>
                         {% if categories|length > 0 %}
                             {% for category in categories %}
@@ -155,7 +155,7 @@
                                 <li>No categories were found</li>
                         {% endif %}
                     </ul>
-                    
+
                 </nav>
         {% block body %} {% endblock %}
             </div>
@@ -166,7 +166,7 @@
                         <a href="https://www.mozilla.org/en-US/"><img src="{{ url_for('static', filename='img/footer-mozilla.png')}}" alt="mozilla"></a>
                     </div>
                     <div class="footer-license">
-                        <p>Certaines parties de ce contenu sont ©1998–2013 par les contributeurs individuels de mozilla.org. Le contenu est disponible sous <a href="https://www.mozilla.org/foundation/licensing/website-content.html">licence Creative Commons</a>.              
+                        <p>Certaines parties de ce contenu sont ©1998–2013 par les contributeurs individuels de mozilla.org. Le contenu est disponible sous <a href="https://www.mozilla.org/foundation/licensing/website-content.html">licence Creative Commons</a>.
                         </p>
                         <p>
                             <a href="https://www.mozilla.org/fr/contribute/page/">Contribuer à cette page</a>
@@ -195,4 +195,3 @@
         <script src="{{ url_for('static', filename='js/plugins/dataTables/jquery.dataTables.js')}}"></script>
 <script src="{{ url_for('static', filename='js/plugins/dataTables/dataTables.bootstrap.js')}}"></script>
     </body>
-
