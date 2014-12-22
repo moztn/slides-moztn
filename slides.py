@@ -47,19 +47,26 @@ def first_run():
 def add_category():
     # categories = category_controller.list()
     # category = CategoryModel(request.form['name'])
-    category_controller.create(
-        name=request.form['name']
-    )
+    try:
+        category_controller.create(
+            name=request.form['name']
+        )
 
-    status = True
-    return render_template(
+        status = True
+        return render_template(
+            'admin.html',
+            status=status,
+            action='added',
+            operation='categories',
+            categories=category_controller.list()
+        )
+    except IntegrityError as e:
+        db_session.rollback()
+        return render_template(
         'admin.html',
-        status=status,
-        action='added',
-        operation='categories',
-        categories=category_controller.list(),
-        message='This category already exists in DB!'
-    )
+        status = False,
+        categories = category_controller.list(),
+        message ="This Categorie already exists ! ")
 
 
 @app.route('/addSlide', methods=['GET', 'POST'])
