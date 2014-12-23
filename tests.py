@@ -21,6 +21,21 @@ class SlidesTestCase(unittest.TestCase):
         rv = self.app.get('/')
         assert rv.status_code == 200
 
+    def test_add_new_category(self):
+        rv = self.app.post('/addCategory', data=dict(
+              name='test'), follow_redirects=True)
+        assert "Category added succefully" in rv.data
+
+    def test_add_existing_category(self):
+        self.app.post('/addCategory', data=dict(
+             name='test'), follow_redirects=True)
+
+        rv = self.app.post('/addCategory', data=dict(
+             name='test'), follow_redirects=True)
+        assert "This Categorie already exists !" in rv.data
+
+
+
 
 
 if __name__ == '__main__':
