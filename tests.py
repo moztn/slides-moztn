@@ -43,7 +43,6 @@ class SlidesTestCase(unittest.TestCase):
 
         rv = self.app.post('/updatecategory', data=dict(
              id=c.id, title="test2"), follow_redirects=True)
-        print rv.data
         assert "Category updated succefully" in rv.data
 
 #    def test_update_category_with_existing_name(self):
@@ -70,7 +69,6 @@ class SlidesTestCase(unittest.TestCase):
 
         rv = self.app.post('/deletecategory', data=dict(
              id=c.id), follow_redirects=True)
-        print rv.data
         assert "Category deleted succefully" in rv.data
 
 
