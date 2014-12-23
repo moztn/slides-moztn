@@ -83,24 +83,32 @@ def add_slide():
 
     # Takes a default value in case screenshot not specified.
     if not request.form['screenshot']:
-      screenshot = "img/badge-reserved.jpg"
+        screenshot = "img/badge-reserved.jpg"
     else:
-      screenshot = request.form['screenshot']
-    slide_controller.create(
-        title=request.form['title'],
-        url=request.form['url'],
-        description=request.form['description'],
-        category=request.form['categorie'],
-        screenshot=screenshot,
-    )
-    redirect(url_for("admin"))
+        screenshot = request.form['screenshot']
+    try:
+        slide_controller.create(
+            title=request.form['title'],
+            url=request.form['url'],
+            description=request.form['description'],
+            category=request.form['categorie'],
+            screenshot=screenshot,
+        )
+        redirect(url_for("admin"))
 
-    return render_template(
+        return render_template(
+            'admin.html',
+            categories=category_controller.list(),
+            status=True,
+            action='added'
+        )
+    except IntegrityError as e:
+        db_session.rollback()
+        return render_template(
         'admin.html',
-        categories=category_controller.list(),
-        status=True,
-        action='added'
-    )
+        status = False,
+        categories = category_controller.list(),
+        message ="This slide already exists ! ")
     # except IntegrityError as e:
     #     print("="*100)
     #     print("inter")
@@ -184,59 +192,74 @@ def update_slide():
             message=message
         )
     if not request.form['screenshot']:
-      screenshot = "img/badge-reserved.jpg"
+        screenshot = "img/badge-reserved.jpg"
     else:
-      screenshot = request.form['screenshot']
-    slide_id = request.form['id']
-    s = SlideModel.query.get(slide_id)
-    s.title = request.form['title']
-    s.description = request.form['description']
-    s.url = request.form['url']
-    s.category = request.form['categorie']
-    s.screenshot = screenshot
-    db_session.add(s)
-    db_session.commit()
-    status = True
+        screenshot = request.form['screenshot']
+    try:
+        slide_id = request.form['id']
+        s = SlideModel.query.get(slide_id)
+        s.title = request.form['title']
+        s.description = request.form['description']
+        s.url = request.form['url']
+        s.category = request.form['categorie']
+        s.screenshot = screenshot
+        db_session.add(s)
+        db_session.commit()
+        status = True
 
-    return render_template(
+        return render_template(
+            'admin.html',
+            categories=category_controller.list(),
+            status=status,
+            action='updated'
+        )
+    except IntegrityError as e:
+        db_session.rollback()
+        return render_template(
         'admin.html',
-        categories=category_controller.list(),
-        status=status,
-        action='updated'
-    )
+        status = False,
+        categories = category_controller.list(),
+        message ="This slide already exists ! ")
 
 @app.route('/updatecategory', methods=['GET', 'POST'])
 def update_category():
     """
     Updates a category.
     """
-
-    category_id = request.form['id']
-    c = CategoryModel.query.get(category_id)
+    try:
+        category_id = request.form['id']
+        c = CategoryModel.query.get(category_id)
  
-    if c.name == "Uncategorised":
+        if c.name == "Uncategorised":
+            return render_template(
+            'admin.html',
+            categories=category_controller.list(),
+            status=False,
+            action='updated',
+            operation='categories',
+            message="You can't change the name of this category"
+            )
+
+        c.name = request.form['title']
+   
+        db_session.add(c)
+        db_session.commit()
+        status = True
+
+        return render_template(
+            'admin.html',
+            categories=category_controller.list(),
+            status=status,
+            action='updated',
+            operation='categories'
+        )
+    except IntegrityError as e:
+        db_session.rollback()
         return render_template(
         'admin.html',
-        categories=category_controller.list(),
-        status=False,
-        action='updated',
-        operation='categories',
-        message="You can't change the name of this category"
-        )
-
-    c.name = request.form['title']
-   
-    db_session.add(c)
-    db_session.commit()
-    status = True
-
-    return render_template(
-        'admin.html',
-        categories=category_controller.list(),
-        status=status,
-        action='updated',
-        operation='categories'
-    )
+        status = False,
+        categories = category_controller.list(),
+        message ="This Categorie already exists ! ")    
 
 # retrives slides for a given category
 @app.template_filter('getSlides')
