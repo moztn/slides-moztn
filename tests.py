@@ -61,6 +61,17 @@ class SlidesTestCase(unittest.TestCase):
 #        print rv.data
 #        assert "Category updated succefully" in rv.data
 
+    def test_update_uncategorised_category(self):
+
+        self.app.get('/init')
+
+        c = CategoryModel.query.filter(CategoryModel.name=="Uncategorised").first()
+
+        rv = self.app.post('/updatecategory', data=dict(
+             id=c.id, name="test"), follow_redirects=True)
+        assert "You can&#39;t change the name of this category" in rv.data
+
+
     def test_delete_category(self):
         self.app.post('/addCategory', data=dict(
              name='test'), follow_redirects=True)
@@ -70,6 +81,15 @@ class SlidesTestCase(unittest.TestCase):
         rv = self.app.post('/deletecategory', data=dict(
              id=c.id), follow_redirects=True)
         assert "Category deleted succefully" in rv.data
+
+    def test_delete_uncategorised_category(self):
+        self.app.get('/init')
+
+        c = CategoryModel.query.filter(CategoryModel.name=="Uncategorised").first()
+
+        rv = self.app.post('/deletecategory', data=dict(
+             id=c.id, name="test"), follow_redirects=True)
+        assert "You can&#39;t delete this category" in rv.data
 
 
 
