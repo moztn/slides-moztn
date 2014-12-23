@@ -62,6 +62,16 @@ class SlidesTestCase(unittest.TestCase):
 #        print rv.data
 #        assert "Category updated succefully" in rv.data
 
+    def test_delete_category(self):
+        self.app.post('/addCategory', data=dict(
+             name='test'), follow_redirects=True)
+
+        c = CategoryModel.query.filter(CategoryModel.name=="test").first()
+
+        rv = self.app.post('/deletecategory', data=dict(
+             id=c.id), follow_redirects=True)
+        print rv.data
+        assert "Category deleted succefully" in rv.data
 
 
 
