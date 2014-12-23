@@ -4,6 +4,7 @@ import slides
 import unittest
 import tempfile
 import database
+from models import CategoryModel
 
 
 
@@ -34,9 +35,36 @@ class SlidesTestCase(unittest.TestCase):
              name='test'), follow_redirects=True)
         assert "This Categorie already exists !" in rv.data
 
+    def test_update_category(self):
+        self.app.post('/addCategory', data=dict(
+             name='test'), follow_redirects=True)
+
+        c = CategoryModel.query.filter(CategoryModel.name=="test").first()
+
+        rv = self.app.post('/updatecategory', data=dict(
+             id=c.id, title="test2"), follow_redirects=True)
+        print rv.data
+        assert "Category updated succefully" in rv.data
+
+#    def test_update_category_with_existing_name(self):
+#
+#
+#        self.app.post('/addCategory', data=dict(
+#             name='test'), follow_redirects=True)
+#
+#        self.app.post('/addCategory', data=dict(
+#             name='test2'), follow_redirects=True)
+#
+#        c = CategoryModel.query.filter(CategoryModel.name=="test2").first()
+#
+#        rv = self.app.post('/updatecategory', data=dict(
+#             id=c.id, title="test"), follow_redirects=True)
+#        print rv.data
+#        assert "Category updated succefully" in rv.data
+
 
 
 
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(verbosity=2)
