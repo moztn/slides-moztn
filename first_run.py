@@ -5,11 +5,11 @@ from controllers import category_controller, slide_controller
 
 
 if __name__ == '__main__':
-  print("Please open http://localhost:5000/init on your browser")
+   if not os.path.exists('db'):
+      os.makedirs('db')
+   print("Please open http://localhost:5000/init on your browser")
 
 def init():
-    if not os.path.exists('db'):
-        os.makedirs('db')
     init_db()
     
     print("Createing the a test category..")
