@@ -45,21 +45,21 @@ class SlidesTestCase(unittest.TestCase):
              id=c.id, title="test2"), follow_redirects=True)
         assert "Category updated succefully" in rv.data
 
-#    def test_update_category_with_existing_name(self):
-#
-#
-#        self.app.post('/addCategory', data=dict(
-#             name='test'), follow_redirects=True)
-#
-#        self.app.post('/addCategory', data=dict(
-#             name='test2'), follow_redirects=True)
-#
-#        c = CategoryModel.query.filter(CategoryModel.name=="test2").first()
-#
-#        rv = self.app.post('/updatecategory', data=dict(
-#             id=c.id, title="test"), follow_redirects=True)
-#        print rv.data
-#        assert "Category updated succefully" in rv.data
+    @unittest.expectedFailure
+    def test_update_category_with_existing_name(self):
+
+
+        self.app.post('/addCategory', data=dict(
+             name='test'), follow_redirects=True)
+
+        self.app.post('/addCategory', data=dict(
+             name='test2'), follow_redirects=True)
+
+        c = CategoryModel.query.filter(CategoryModel.name=="test2").first()
+
+        rv = self.app.post('/updatecategory', data=dict(
+             id=c.id, title="test"), follow_redirects=True)
+        assert "Category updated succefully" in rv.data
 
     def test_update_uncategorised_category(self):
 
