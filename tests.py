@@ -92,6 +92,56 @@ class SlidesTestCase(unittest.TestCase):
         assert "You can&#39;t delete this category" in rv.data
 
 
+    @unittest.expectedFailure
+    def test_add_new_slide_with_valid_url(self):
+        self.app.post('/addCategory', data=dict(
+              name='test'), follow_redirects=True)
+
+        c = CategoryModel.query.filter(CategoryModel.name=="test").first()
+
+        rv = self.app.post('/addSlide', data=dict(
+            title='Firefox OS App Day Tunisia',
+            url='https://github.com/moztn/firefoxOSAppDay-Slides',
+            description='Firefox OS App Day Tunisia Event',
+            categorie=c.id)
+          )
+
+        print rv.data
+
+        assert "Slide added succefully" in rv.data
+
+    def test_add_new_slide_with_non_github_url(self):
+        self.app.post('/addCategory', data=dict(
+              name='test'), follow_redirects=True)
+
+        c = CategoryModel.query.filter(CategoryModel.name=="test").first()
+
+        rv = self.app.post('/addSlide', data=dict(
+            title='Firefox OS App Day Tunisia',
+            url='https://www.mozilla-tunisia.org/moztn/firefoxOSAppDay-Slides',
+            description='Firefox OS App Day Tunisia Event',
+            categorie=c.id)
+          )
+
+        assert "Your slides must be hosted on https://github.com/" in rv.data
+
+    @unittest.expectedFailure
+    def test_add_new_slide_with_non_gh_pages_branch(self):
+        self.app.post('/addCategory', data=dict(
+              name='test'), follow_redirects=True)
+
+        c = CategoryModel.query.filter(CategoryModel.name=="test").first()
+
+        rv = self.app.post('/addSlide', data=dict(
+            title='Firefox OS App Day Tunisia',
+            url='https://github.com/moztn/moztnbot',
+            description='Firefox OS App Day Tunisia Event',
+            categorie=c.id)
+          )
+
+        assert "You have to create a 'gh-pages' branch" in rv.data
+
+
 
 
 if __name__ == '__main__':
