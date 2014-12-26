@@ -34,7 +34,8 @@ login_manager.user_loader(get_admin_by_id)
 login_manager.init_app(app)
 browser_id = BrowserID()
 browser_id.user_loader(get_admin)
-browser_id.redirect_url = 'admin'
+browser_id.redirect_url = '/admin?login=Success'
+browser_id.redirect_url_after_logout = '/'
 browser_id.init_app(app)
 
 @app.route('/init')
@@ -301,11 +302,17 @@ def index():
 def admin():
     current_app.logger.debug("debug admin")
     status = -1
-    return render_template(
-    'admin.html',
-    categories=category_controller.list(),
-    status=status
-)
+    if request.method == 'GET':
+        login = request.args.get('login')	
+        return render_template('admin.html',
+			categories=category_controller.list(),
+			login=login)
+    else:
+        return render_template(
+        'admin.html',
+        categories=category_controller.list(),
+        status=status
+        )
 
 @app.errorhandler(404)
 def page_not_found(e):
