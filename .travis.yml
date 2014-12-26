@@ -5,13 +5,20 @@ python:
 install:
     - pip install -r requirements.txt
 
+before_script: python ./first_run.py
+
+# Command to run tests
+script: python ./tests.py
 
 notifications:
   email: false
   irc:
     channels:
       - "irc.mozilla.org#mozillatunisia"
-    on_success: change
+    on_success: always
     on_failure: always
     use_notice: true
-    skip_join: true
+
+  template:
+    - "%{repository} (%{commit}) : %{message} %{foo} "
+    - "Build details: %{build_url}"

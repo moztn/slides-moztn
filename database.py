@@ -1,8 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+import config
 
-engine = create_engine('sqlite:///db/moztn-slides.db', convert_unicode=True)
+engine = create_engine("sqlite://" + config.DATABASE, convert_unicode=True)
 db_session = scoped_session(sessionmaker(autocommit=False, 
       autoflush=False,bind=engine))
 
