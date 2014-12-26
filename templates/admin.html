@@ -6,6 +6,14 @@
     }
 
   </script>
+{% if not current_user.is_authenticated() %}
+		<div class="alert alert-error">
+			<button type="button" class="close" data-dismiss="alert">x</button>
+			<h4>
+				<span><strong>Ooops !</strong> You must be logged in to access this page ! </span>
+			</h4>
+		</div>
+{% else %}
 {% if login == 'Success' %}
         <div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert">×</button>
@@ -394,4 +402,5 @@
             $('#tabs-842557 a[href="#panel-469452"]').tab('show');
         </script>
     {% endif %}
+{% endif %}
 {% endblock %}
