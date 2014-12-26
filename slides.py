@@ -8,7 +8,7 @@ from flask import (
 from database import db_session
 from models import AdministratorModel, SlideModel, CategoryModel
 from controllers import category_controller, slide_controller
-from flask.ext.login import LoginManager
+from flask.ext.login import LoginManager , login_required
 from flask.ext.browserid import BrowserID
 
 def get_admin_by_id(aId):
@@ -45,6 +45,7 @@ def first_run():
   return redirect(url_for("index"))
 
 @app.route('/addCategory', methods=['GET', 'POST'])
+@login_required
 def add_category():
     # categories = category_controller.list()
     # category = CategoryModel(request.form['name'])
@@ -71,6 +72,7 @@ def add_category():
 
 
 @app.route('/addSlide', methods=['GET', 'POST'])
+@login_required
 def add_slide():
     current_app.logger.debug("debug aaddSlide")
     message = isValidURL(request.form['url'])
@@ -126,6 +128,7 @@ def add_slide():
     
     
 @app.route('/deleteslide', methods=['GET', 'POST'])
+@login_required
 def delete_slide():
     """
     Deletes a slide.
@@ -140,6 +143,7 @@ def delete_slide():
     )
 
 @app.route('/deletecategory', methods=['GET', 'POST'])
+@login_required
 def delete_category():
     """
     Deletes a category.
@@ -179,6 +183,7 @@ def delete_category():
 
 
 @app.route('/updateslide', methods=['GET', 'POST'])
+@login_required
 def update_slide():
     """
     Updates a slide.
@@ -223,6 +228,7 @@ def update_slide():
         message ="This slide already exists ! ")
 
 @app.route('/updatecategory', methods=['GET', 'POST'])
+@login_required
 def update_category():
     """
     Updates a category.
