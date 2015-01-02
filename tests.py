@@ -30,6 +30,7 @@ class SlidesTestCase(unittest.TestCase):
         assert rv.status_code == 200
 
     def test_add_new_category(self):
+        self.app.get("/test_login")
         rv = self.app.post('/addCategory', data=dict(
               name='test'), follow_redirects=True)
         assert "Category added succefully" in rv.data
@@ -40,6 +41,7 @@ class SlidesTestCase(unittest.TestCase):
         assert 'Unauthorized' in rv.data
 
     def test_add_existing_category(self):
+        self.app.get("/test_login")
         self.app.post('/addCategory', data=dict(
              name='test'), follow_redirects=True)
 
@@ -48,6 +50,7 @@ class SlidesTestCase(unittest.TestCase):
         assert "This Categorie already exists !" in rv.data
 
     def test_update_category(self):
+        self.app.get("/test_login")
         self.app.post('/addCategory', data=dict(
              name='test'), follow_redirects=True)
 
@@ -74,7 +77,7 @@ class SlidesTestCase(unittest.TestCase):
     @unittest.expectedFailure
     def test_update_category_with_existing_name(self):
 
-
+        self.app.get("/test_login")
         self.app.post('/addCategory', data=dict(
              name='test'), follow_redirects=True)
 
@@ -88,7 +91,7 @@ class SlidesTestCase(unittest.TestCase):
         assert "Category updated succefully" in rv.data
 
     def test_update_uncategorised_category(self):
-
+        self.app.get("/test_login")
         self.app.get('/init')
 
         c = CategoryModel.query.filter(CategoryModel.name=="Uncategorised").first()
@@ -99,6 +102,7 @@ class SlidesTestCase(unittest.TestCase):
 
 
     def test_delete_category(self):
+        self.app.get("/test_login")
         self.app.post('/addCategory', data=dict(
              name='test'), follow_redirects=True)
 
@@ -123,8 +127,8 @@ class SlidesTestCase(unittest.TestCase):
         assert 'Unauthorized' in rv.data
 
     def test_delete_uncategorised_category(self):
+        self.app.get("/test_login")
         self.app.get('/init')
-
         c = CategoryModel.query.filter(CategoryModel.name=="Uncategorised").first()
 
         rv = self.app.post('/deletecategory', data=dict(
@@ -134,6 +138,7 @@ class SlidesTestCase(unittest.TestCase):
 
     @unittest.expectedFailure
     def test_add_new_slide_with_valid_url(self):
+        self.app.get("/test_login")
         self.app.post('/addCategory', data=dict(
               name='test'), follow_redirects=True)
 
@@ -151,6 +156,7 @@ class SlidesTestCase(unittest.TestCase):
         assert "Slide added succefully" in rv.data
 
     def test_add_new_slide_with_non_github_url(self):
+        self.app.get("/test_login")
         self.app.post('/addCategory', data=dict(
               name='test'), follow_redirects=True)
 
@@ -167,6 +173,7 @@ class SlidesTestCase(unittest.TestCase):
 
     @unittest.expectedFailure
     def test_add_new_slide_with_non_gh_pages_branch(self):
+        self.app.get("/test_login")
         self.app.post('/addCategory', data=dict(
               name='test'), follow_redirects=True)
 
