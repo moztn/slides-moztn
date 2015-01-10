@@ -2,7 +2,7 @@ slides-moztn
 ============
 
 ## Description :
-slides-moztn is a webapp written with the micro web framework Flask
+slides-moztn is a webapp written with the micro web framework Flask. It is basically a sort of platfom to aggregate all presentations  done by  Mozilla Tunisia community in different events. What makes this project different from Slideshare and Co is its support for presentations written in HTML5.
  
 ## Running :
 pip and virtualenv need to be installed on your machine.
@@ -34,9 +34,14 @@ pip and virtualenv need to be installed on your machine.
      $ python slides.py
    </pre>
 
-   5- Init data base :
-   Open `http://localhost:5000/init`
+  5- Init data base :
+   <pre>
+     $ python first_run.py
+   </pre>
 
-  A webserver will be started so that you can access the web app via http://http://127.0.0.1:5000/
+
+  A webserver will be started so that you can access the web app via http://127.0.0.1:5000/
+
+  If you want to contribute an be part of this project, please check first our page "GitHub Good Practices" (in french) via http://wiki.mozilla-tunisia.org/Github_good_practices 
 
 
