@@ -10,7 +10,10 @@
 		<div class="alert alert-error">
 			<button type="button" class="close" data-dismiss="alert">x</button>
 			<h4>
-				<span><strong>Ooops !</strong> You must be logged in to access this page ! </span>
+				<span>
+          <strong>Ooops !</strong> You must be logged in to access this page !
+          <p><strong> Not registred yet?</strong> <a href="{{url_for('registration')}}">Join Here!</a></p>
+        </span>
 			</h4>
 		</div>
 {% else %}
@@ -119,24 +122,24 @@
                             </thead>
                             <tbody>
                                 {% for c in categories %}
-                                    
+
                                         <tr>
                                             <td>{{ c.id }}</td>
-                                            <td>{{ c.name }}</td>                       
+                                            <td>{{ c.name }}</td>
                                             <td style="width:80px;">
                                                 <button data-toggle-dialog="#" data-toggle="modal" data-target="#updatecategory" title="Update Category" class="btn btn-small btn-warning" type="button"><i class="icon-white icon-edit"></i></button>
                                                 <button data-toggle-dialog="#" data-toggle="modal" data-target="#deletecategory" title="Delete Category" class="btn btn-danger btn-small" type="button"><i class="icon-white icon-trash"></i></button>
                                             </td>
                                         </tr>
-                                    {% endfor %}                                
+                                    {% endfor %}
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-       
+
 </section>
-        
+
 
 <div class="modal hide fade" id="delteslide" tabindex="-1" role="dialog" aria-labelledby="delteslide">
     <form method="POST" action="{{ url_for('delete_slide') }}">
@@ -147,12 +150,12 @@
                     <h4 class="modal-title" id="delteslide">Delete a Slide</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure you want to delete : 
-                        <strong> 
+                    <p>Are you sure you want to delete :
+                        <strong>
                             <span class="title-container"></span>
                         </strong>
                     </p>
-                    <input type="hidden" name="id" />       
+                    <input type="hidden" name="id" />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -175,12 +178,12 @@
                     <h4 class="modal-title" id="deletecategory">Delete a Category</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure you want to delete : 
-                        <strong> 
+                    <p>Are you sure you want to delete :
+                        <strong>
                             <span class="title-container"></span>
                         </strong>
                     </p>
-                    <input type="hidden" name="id" />       
+                    <input type="hidden" name="id" />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -257,7 +260,7 @@
                         <tr>
                             <td><label>Name</label></td>
                             <td><input type="text" name="title" required /></td>
-                        </tr>                        
+                        </tr>
                         <input type="hidden" name="id">
                     </table>
                 </div>
@@ -334,7 +337,7 @@
                         <tr>
                             <td><label>Name : </label></td>
                             <td><input type="text" name="name" required /></td>
-                        </tr>                        
+                        </tr>
                     </table>
                 </div>
                 <div class="modal-footer">
@@ -378,7 +381,7 @@
         var columns = e.closest('tr').find('td');
         var id = $(columns[0]).text();
         var title = $(columns[1]).text();
-        
+
         $('.title-container').html(title);
         $('input[name=id]').val(id);
         $('input[name=title]').val(title);
