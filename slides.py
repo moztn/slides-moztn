@@ -42,7 +42,7 @@ browser_id.init_app(app)
 def first_run():
   import first_run
   first_run.init()
-  return redirect(url_for("index"))
+  return redirect(url_for("admin"))
 
 @app.route('/addCategory', methods=['GET', 'POST'])
 @login_required
@@ -125,8 +125,8 @@ def add_slide():
     #         status=status,
     #         message='This slide already exists'
     #     )
-    
-    
+
+
 @app.route('/deleteslide', methods=['GET', 'POST'])
 @login_required
 def delete_slide():
@@ -169,7 +169,7 @@ def delete_category():
         s.category = uc.id
         db_session.add(s)
     category_controller.delete(category_id)
-    
+
     db_session.commit()
 
 
@@ -236,7 +236,7 @@ def update_category():
     try:
         category_id = request.form['id']
         c = CategoryModel.query.get(category_id)
- 
+
         if c.name == "Uncategorised":
             return render_template(
             'admin.html',
@@ -248,7 +248,7 @@ def update_category():
             )
 
         c.name = request.form['title']
-   
+
         db_session.add(c)
         db_session.commit()
         status = True
@@ -266,7 +266,7 @@ def update_category():
         'admin.html',
         status = False,
         categories = category_controller.list(),
-        message ="This Categorie already exists ! ")    
+        message ="This Categorie already exists ! ")
 
 # retrives slides for a given category
 @app.template_filter('getSlides')
@@ -288,7 +288,7 @@ def isValidURL(url):
     # Check if the branch 'gh-pages' exists
     import requests
     res = requests.get(url+'/tree/gh-pages')
-  
+
     if(not res.ok):
         return "You have to create a 'gh-pages' branch"
 
@@ -309,7 +309,7 @@ def admin():
     current_app.logger.debug("debug admin")
     status = -1
     if request.method == 'GET':
-        login = request.args.get('login')	
+        login = request.args.get('login')
         return render_template('admin.html',
 			categories=category_controller.list(),
 			login=login)
@@ -319,7 +319,12 @@ def admin():
         categories=category_controller.list(),
         status=status
         )
-
+@app.route('/registration')
+def registration():
+    return render_template(
+        'registration.html',
+        categories=category_controller.list()
+    )
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html')
