@@ -6,8 +6,20 @@
     }
 
   </script>
+
 {% if not current_user.is_authenticated() %}
-		<div class="alert alert-error">
+  {% if login == 'Success' and not current_user.is_active()  %}
+  		<div class="alert alert-error">
+  			<button type="button" class="close" data-dismiss="alert">x</button>
+  			<h4>
+  				<span>
+            <strong>Ooops !</strong> Your account is not yet activated !</strong>
+            <p><strong> Please wait for activation, an admin has been notified.</strong>
+          </span>
+  			</h4>
+  		</div>
+  {% else %}
+ 		<div class="alert alert-error">
 			<button type="button" class="close" data-dismiss="alert">x</button>
 			<h4>
 				<span>
@@ -16,8 +28,12 @@
         </span>
 			</h4>
 		</div>
+ 
+  {% endif %}
+{% elif current_user.is_authenticated() and not current_user.has_nickname() %}
+    <p> TODO : fill form </p>
 {% else %}
-{% if login == 'Success' %}
+{% if login == 'Success' and  current_user.is_active() %}
         <div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert">×</button>
             <h4>
@@ -25,6 +41,7 @@
             </h4>
         </div>
 {% endif %}
+
 {% if status == True %}
     {% if operation == 'categories' %}
         <div class="alert alert-success">

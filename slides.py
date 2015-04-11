@@ -7,12 +7,18 @@ from flask import (
 
 from database import db_session
 from models import AdministratorModel, SlideModel, CategoryModel
-from controllers import category_controller, slide_controller
+from controllers import (
+      category_controller, slide_controller, administrator_controller
+)
+
 from flask.ext.login import LoginManager , login_required
 from flask.ext.browserid import BrowserID
 
+
+
 def get_admin_by_id(aId):
   try:
+    print "get_admin_by_id : {0}".format(aId)
     admin = AdministratorModel.query.get(int(aId))
     return admin
   except NoResultFound:
@@ -21,9 +27,14 @@ def get_admin_by_id(aId):
 def get_admin(kwargs):
   try:
     admin = AdministratorModel.query.filter_by(email=kwargs['email']).first()
+
+    if(admin is None):
+      raise NoResultFound
     return admin
   except NoResultFound:
-    return None
+    admin = administrator_controller.create(email=kwargs['email'])
+    print admin
+    return admin
 
 app = Flask(__name__)
 

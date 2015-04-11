@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Boolean, Column, Integer, String, ForeignKey
 from database import Base
 from sqlalchemy.orm import relationship, backref
 from flask.ext.login import UserMixin
@@ -7,13 +7,27 @@ from flask.ext.login import UserMixin
 class AdministratorModel(Base,UserMixin):
     __tablename__ = 'administrators'
     id = Column(Integer, primary_key=True)
+    nickname = Column(String(10), unique=True)
     email = Column(String(90), unique=True)
+    active = Column(Boolean)
+    super_admin = Column(Boolean)
+    
 
-    def __init__(self, email=None):
+    def __init__(self, nickname=None, email=None, active=False, super_admin=False):
+        self.nickname = nickname
         self.email = email
+        self.active = active
+        self.super_admin = super_admin
 
     def __repr__(self):
         return '<Administrator %r>' %(self.email)
+
+    def is_active(self):
+      return self.active
+
+    def has_nickname(self):
+      return self.nickname is not None and \
+             len(self.nickname) is not 0
 
 class SlideModel(Base):
     __tablename__ = 'slides'
@@ -24,6 +38,7 @@ class SlideModel(Base):
     category = Column(Integer, ForeignKey('categories.id'), nullable=False)
     # category = relationship('Category', backref=backref('slides', lazy='dynamic'))
     screenshot = Column(String(255))
+    owner = Column(Integer, ForeignKey('administrators.id'), nullable=False)
 
     def __repr__(self):
         return '<Slide %s>' %(self.title)
