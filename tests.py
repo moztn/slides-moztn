@@ -140,6 +140,10 @@ class SlidesTestCase(unittest.TestCase):
           )
 
         assert "You have to create a 'gh-pages' branch" in rv.data
+     
+    def test_access_to_admin_page_denied_if_not_logged_in(self):
+       rv = self.app.get('/admin')
+       assert 'You must be logged in to access this page' in rv.data     
 
 
 
